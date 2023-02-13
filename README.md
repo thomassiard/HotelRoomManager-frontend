@@ -2,10 +2,10 @@
 
 ---
 
-Tim 177: **Thomas Siard i Josip Siljan**
-Kolegij: [Web aplikacije](https://www.notion.so/Web-aplikacije-7ba8350d498546a78812399024edac44)
-Nositelj kolegija: [doc.dr.sc. Nikola Tanković](https://www.notion.so/fiputreca/Kontakt-stranica-875574d1b92248b1a8e90dae52cd29a9)
-[Fakultet informatike u Puli](https://fipu.unipu.hr)
+Tim 177: **Thomas Siard i Josip Siljan**\
+Kolegij: [Web aplikacije](https://www.notion.so/Web-aplikacije-7ba8350d498546a78812399024edac44)\
+Nositelj kolegija: [doc.dr.sc. Nikola Tanković](https://www.notion.so/fiputreca/Kontakt-stranica-875574d1b92248b1a8e90dae52cd29a9)\
+[Fakultet informatike u Puli](https://fipu.unipu.hr)\
 
 ## **Opis**
 
@@ -18,6 +18,7 @@ Aplikacija za turiste/goste i osoblje hotela. Služi za bolju povezanost korisni
 <ul>
     <li>Thomas Siard (tsiard@unipu.hr) -></li>
     <li>Josip Siljan (jsiljan@unipu.hr) -></li>
+</ul>
 
 ## **Prototip aplikacije**
 
