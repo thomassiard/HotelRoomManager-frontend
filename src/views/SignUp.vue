@@ -1,9 +1,15 @@
 <template>
-  <div class="login">
-    <div class="background-image"></div>
+  <div class="signup">
+    <div class="image-container">
+      <img src="../assets/signup.jpg" alt="SignUp Image" class="signup-image" />
+    </div>
     <div class="form-container">
-      <h1 class="title">Login</h1>
+      <h1 class="title">Sign Up</h1>
       <form @submit.prevent="submitForm">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" v-model="fullName" />
+        </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" v-model="email" />
@@ -12,8 +18,16 @@
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" />
         </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            v-model="confirmPassword"
+          />
+        </div>
         <div class="button-container">
-          <button class="login-button" type="submit">Login</button>
+          <button class="signup-button" type="submit">Sign Up</button>
         </div>
       </form>
     </div>
@@ -24,8 +38,10 @@
 export default {
   data() {
     return {
+      fullName: "",
       email: "",
       password: "",
+      confirmPassword: "",
     };
   },
   methods: {
@@ -33,37 +49,42 @@ export default {
       // Ovdje ćete implementirati logiku za prijavu (login).
       // Možete provjeriti korisničko ime i lozinku, komunicirati s poslužiteljem itd.
       // U ovom primjeru ćemo samo ispisati podatke na konzolu.
+      console.log("Full Name:", this.fullName);
       console.log("Email:", this.email);
       console.log("Password:", this.password);
+      console.log("Confirm Password:", this.confirmPassword);
     },
   },
 };
 </script>
 
 <style>
-.login {
-  position: relative;
+.signup {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.background-image {
+.image-container {
   width: 100%;
-  height: 250px; /* Smanjili smo visinu slike */
-  background-image: url("../assets/login.jpeg");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8; /* Smanjili smo prozirnost, čineći sliku tamnijom */
-  filter: brightness(50%); /* Podesili smo svjetlinu na 50% */
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.signup-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 55%;
 }
 
 .form-container {
-  position: relative;
-  z-index: 1;
   width: 100%;
   max-width: 400px;
-  margin-top: 20px; /* Pomaknuli smo formu prema dolje */
+  margin-top: 20px;
   padding: 20px;
   background-color: white;
 }
@@ -94,7 +115,7 @@ input {
   margin-top: 20px;
 }
 
-.login-button {
+.signup-button {
   padding: 10px 20px;
   font-size: 16px;
   background-color: black;
@@ -104,11 +125,11 @@ input {
   cursor: pointer;
 }
 
-.login-button:hover {
+.signup-button:hover {
   background-color: #333;
 }
 
-.login-button:focus {
+.signup-button:focus {
   outline: none;
 }
 </style>
