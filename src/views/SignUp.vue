@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -45,14 +47,23 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      // Ovdje ćete implementirati logiku za prijavu (login).
-      // Možete provjeriti korisničko ime i lozinku, komunicirati s poslužiteljem itd.
-      // U ovom primjeru ćemo samo ispisati podatke na konzolu.
-      console.log("Full Name:", this.fullName);
-      console.log("Email:", this.email);
-      console.log("Password:", this.password);
-      console.log("Confirm Password:", this.confirmPassword);
+    async submitForm() {
+      try {
+        const response = await axios.post("/api/auth/register", {
+          username: this.email,
+          password: this.password,
+        });
+
+        console.log(response.data); // Ispisujemo podatke iz odgovora na konzolu
+
+        if (response.status === 201) {
+          console.log("User registered successfully");
+          // Ovdje možete dodati redirekciju na drugu stranicu ako je registracija uspješna
+        }
+      } catch (error) {
+        console.error("Register error:", error);
+        // Ovdje možete prikazati poruku korisniku da je došlo do greške prilikom registracije
+      }
     },
   },
 };
