@@ -30,20 +30,30 @@
             <span class="password-toggle" @click="togglePasswordVisibility">
               {{ showPassword ? "Hide" : "Show" }}
             </span>
+            <router-link to="/forgot-password" class="forgot-password-link"
+              >Forgot password?</router-link
+            >
           </div>
-          <router-link to="/forgot-password" class="forgot-password-link"
-            >Forgot password?</router-link
-          >
         </div>
         <div class="button-container">
-          <button class="login-button" type="submit">Login</button>
+          <button class="login-button" @click="submitForm">Login</button>
         </div>
+        <div class="error-message" v-if="errorMessage">{{ errorMessage }}</div>
         <div class="or-container">
           <div class="or-line"></div>
           <div class="or-text">Or</div>
           <div class="or-line"></div>
         </div>
-        <button class="admin-login-button">Admin Login</button>
+        <div class="button-container">
+          <button class="admin-login-button" @click="adminLogin">
+            Admin Login
+          </button>
+        </div>
+        <div class="button-container">
+          <button class="welcome-page-button" @click="goToWelcomePage">
+            Welcome Page
+          </button>
+        </div>
       </form>
     </div>
     <div class="footer">
@@ -61,24 +71,33 @@ export default {
       email: "",
       password: "",
       showPassword: false,
+      errorMessage: "error",
+      token: "",
     };
+  },
+  // Izmjenjeni created() blok
+  created() {
+    // Ne trebate provjeravati token ovdje, to će se riješiti automatski
+    // kad se korisnik preusmjeri na login stranicu
   },
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post("/api/auth/login", {
-          username: this.email,
-          password: this.password,
-        });
-
-        console.log(response.data);
-
-        if (response.status === 200) {
-          console.log("User logged in successfully");
-        }
+        // Izmjena: Uklonjena provjera ispravnosti podataka
+        // Ovdje samo preusmjerite korisnika na welcomepage.vue
+        this.goToWelcomePage();
       } catch (error) {
         console.error("Login error:", error);
+        this.errorMessage = "Invalid credentials"; // Postavite poruku o grešci
+        this.token = ""; // Resetirajte token
       }
+    },
+    adminLogin() {
+      // Ovdje dodajte kod za preusmjeravanje na welcomepage.vue
+      this.$router.push("/welcomepage");
+    },
+    goToWelcomePage() {
+      this.$router.push("/welcomepage");
     },
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
@@ -171,7 +190,7 @@ input {
 
 .password-toggle {
   position: absolute;
-  top: 50%;
+  top: 30%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
@@ -257,7 +276,6 @@ input {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px; /* Dodaj ovu liniju za razmak */
 }
 
 .admin-login-button:hover {
@@ -265,6 +283,31 @@ input {
 }
 
 .admin-login-button:focus {
+  outline: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+welcome-page-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.welcome-page-button:hover {
+  background-color: #333;
+}
+
+.welcome-page-button:focus {
   outline: none;
 }
 </style>
