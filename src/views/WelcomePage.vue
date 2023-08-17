@@ -38,7 +38,7 @@ export default {
   name: "Welcome",
   data() {
     return {
-      menuItems: ["Home", "Rooms", "About Us", "Contact Us", "Log Out"],
+      menuItems: ["Home", "Rooms", "About", "Contact", "Log Out"],
     };
   },
   methods: {
@@ -56,10 +56,10 @@ export default {
         this.$router.push({ name: "welcomepage" });
       } else if (item === "Rooms") {
         this.$router.push({ name: "Rooms" });
-      } else if (item === "About Us") {
-        this.$router.push({ name: "AboutUs" });
-      } else if (item === "Contact Us") {
-        this.$router.push({ name: "Contactus" });
+      } else if (item === "About") {
+        this.$router.push({ name: "About" });
+      } else if (item === "Contact") {
+        this.$router.push({ name: "Contact" });
       } else if (item === "Log Out") {
         // Implementirajte logiku za odjavu korisnika
       }

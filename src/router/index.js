@@ -35,15 +35,21 @@ const routes = [
   },
 
   {
-    path: "/aboutus",
-    name: "AboutUs",
-    component: () => import("@/views/AboutUs.vue"),
+    path: "/about",
+    name: "About",
+    component: () => import("@/views/About.vue"),
   },
 
   {
-    path: "/contactus",
-    name: "Contactus",
-    component: () => import("@/views/ContactUs.vue"),
+    path: "/contact",
+    name: "Contact",
+    component: () => import("@/views/Contact.vue"),
+  },
+
+  {
+    path: "/contactsent",
+    name: "ContactSent",
+    component: () => import("@/views/ContactSent.vue"),
   },
 ];
 
