@@ -75,7 +75,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("@/assets/welcome-background.jpg");
+  background-image: url("@/assets/welcomebackground.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

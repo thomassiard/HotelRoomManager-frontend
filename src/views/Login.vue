@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="image-container">
-      <img src="../assets/signup.jpg" alt="Login Image" class="login-image" />
+      <img src="src/assets/login.jpg" alt="Login Image" class="login-image" />
       <h1 class="login-title">Login</h1>
     </div>
     <div class="form-container">
@@ -30,7 +30,7 @@
             <span class="password-toggle" @click="togglePasswordVisibility">
               {{ showPassword ? "Hide" : "Show" }}
             </span>
-            <router-link to="/forgot-password" class="forgot-password-link"
+            <router-link to="/forgotpassword" class="forgotpassword-link"
               >Forgot password?</router-link
             >
           </div>

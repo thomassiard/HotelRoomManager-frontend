@@ -34,7 +34,7 @@
             Here is another section of text to describe something else. Feel
             free to add any content you want.
           </p>
-          <img class="spa" src="@/assets/spa.jpg" />
+          <img class="spa" src="@/assets/home2.jpg" />
         </div>
       </div>
       <div class="login-container">
@@ -75,7 +75,7 @@ export default {
   flex-direction: column;
   align-items: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("src/assets/background.jpg");
+    url("src/assets/homebackground.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
