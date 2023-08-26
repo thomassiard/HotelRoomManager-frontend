@@ -26,11 +26,22 @@ const routes = [
     path: "/forgotpasswordsent",
     name: "ForgotPasswordSent",
     component: () => import("@/views/ForgotPasswordSent.vue"),
+    props: true,
   },
   {
     path: "/welcomepage",
     name: "WelcomePage",
     component: () => import("@/views/WelcomePage.vue"),
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: () => import("@/views/Profile.vue"),
+  },
+  {
+    path: "/gallery",
+    name: "Gallery",
+    component: () => import("@/views/Gallery.vue"),
   },
 
   {

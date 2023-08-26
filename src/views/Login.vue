@@ -25,7 +25,7 @@
     </nav>
 
     <div class="image-container text-center mt-0 mb-10">
-      <img src="../assets/signup.jpg" alt="SignUp Image" class="signup-image" />
+      <img src="../assets/login.jpg" alt="SignUp Image" class="login-image" />
     </div>
 
     <div class="form-container">
@@ -47,6 +47,11 @@
             <span class="password-toggle" @click="togglePasswordVisibility">
               {{ showPassword ? "Hide" : "Show" }}
             </span>
+          </div>
+          <div class="form-group">
+            <router-link to="/forgotpassword" class="forgot-password-link"
+              >Forgot password?</router-link
+            >
           </div>
         </div>
         <div class="button-container text-center bold-text">
@@ -140,13 +145,13 @@ export default {
   transition: color 0.3s;
 }
 
-.signup-image {
+.login-image {
   width: 100%;
   max-height: 250px;
   object-fit: cover;
 }
 
-.signup-image-text {
+.login-image-text {
   font-size: 24px;
   font-weight: bold;
   color: black;
@@ -201,5 +206,13 @@ export default {
   background-color: rgb(183, 71, 71);
   width: 100%;
   margin-top: 10px; /* Podesite ovu vrijednost prema svojim potrebama za poziciju trake */
+}
+
+.forgot-password-link {
+  color: rgb(183, 71, 71); /* Postavite boju po vašem izboru */
+  font-size: 13px; /* Prilagodite veličinu fonta prema potrebi */
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 </style>

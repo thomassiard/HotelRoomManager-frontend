@@ -1,293 +1,151 @@
 <template>
-  <div class="forgotpassword">
-    <div class="nav-bar">
-      <div class="nav-left">
-        <router-link to="/" class="nav-link">HOTEL ROOM MANAGER</router-link>
+  <div class="forgot-password">
+    <!-- Navigation Bar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark py-3"
+      style="margin-bottom: 0"
+    >
+      <div class="container-fluid">
+        <router-link to="/" class="navbar-brand">
+          <span class="hotel-room-manager">HOTEL ROOM MANAGER</span>
+        </router-link>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <router-link to="/signup" class="nav-link ml-3 text-white">
+              SIGNUP
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link ml-3 text-red">
+              LOGIN
+            </router-link>
+          </li>
+        </ul>
       </div>
-      <div class="nav-right">
-        <router-link to="/signup" class="nav-link">SIGNUP</router-link>
-        <router-link to="/login" class="nav-link">LOGIN</router-link>
-      </div>
+    </nav>
+
+    <div class="image-container text-center mt-0 mb-10">
+      <img src="../assets/login.jpg" alt="SignUp Image" class="login-image" />
     </div>
-    <div class="image-container">
-      <img
-        src="src/assets/forgotpass.jpg"
-        alt="Login Image"
-        class="login-image"
-      />
-      <h1 class="login-title">Login</h1>
+
+    <div class="form-container">
+      <h2 class="text-center">Forgot Password?</h2>
+      <p class="sub-text">Your password will be sent to your email account.</p>
+      <form @submit.prevent="submitForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" v-model="email" class="form-control" />
+        </div>
+        <div class="button-container text-center bold-text">
+          <button class="login-button" type="submit">Send</button>
+        </div>
+        <div v-if="newPassword" class="new-password">
+          Your new password: {{ newPassword }}
+        </div>
+      </form>
     </div>
-    <div class="content">
-      <div class="title">Forgot Password?</div>
-      <div class="subtitle">
-        Your password will be sent to your email account.
-      </div>
-      <div class="form-container">
-        <form @submit.prevent="submitForm">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" v-model="email" />
-          </div>
-          <div class="button-container">
-            <button class="login-button" @click="submitForm">Send</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="footer">
-      <div class="red-bar"></div>
-    </div>
+    <!-- Red strip at the bottom -->
+    <div class="red-strip bottom"></div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data() {
     return {
       email: "",
+      newPassword: "",
     };
   },
   methods: {
     async submitForm() {
-      // Ovdje dodajte logiku za slanje zaboravljene lozinke
+      try {
+        this.newPassword = Math.random().toString(36).slice(-8);
+        console.log("Password reset request sent for:", this.email);
+        console.log("New password:", this.newPassword);
 
-      // Nakon uspješnog slanja, preusmjerite korisnika na ForgotPasswordSent.vue
-      this.$router.push("/forgotpasswordsent");
+        this.$router.push({
+          name: "ForgotPasswordSent",
+          params: { newPassword: this.newPassword },
+        });
+      } catch (error) {
+        console.error("Password reset error:", error);
+      }
     },
   },
 };
 </script>
 
-<style>
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+<style scoped>
+/* Custom styles */
+.bg-dark {
+  background-color: black;
 }
 
-.login-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.nav-link {
+  font-weight: bold;
 }
 
-.login-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36px;
-  color: black;
+.bold-text {
+  font-weight: bold;
 }
-
 .form-container {
   width: 100%;
   max-width: 400px;
-  margin-top: 20px;
+  margin: 0 auto;
   padding: 20px;
   background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.hotel-room-manager {
+  font-weight: bold;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.text-red {
+  color: rgb(183, 71, 71);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-input {
+.login-image {
   width: 100%;
-  padding: 8px;
-  border: 1px solid black;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  max-height: 250px;
+  object-fit: cover;
 }
 
 .login-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: black;
-  color: white;
+  background-color: rgb(238, 238, 178);
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .login-button:hover {
-  background-color: #333;
+  background-color: rgb(238, 238, 178);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.login-button:focus {
-  outline: none;
-}
-
-.password-input {
-  position: relative;
-}
-
-.password-toggle {
-  position: absolute;
-  top: 30%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #555;
-}
-
-.forgotpassword-link {
-  display: block;
-  margin-top: 5px;
-  color: #555;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.footer {
-  width: 100%;
-  height: 20vh;
-  background-color: rgb(166, 65, 65);
-  margin-top: auto;
-}
-
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgb(166, 65, 65);
-  padding: 10px 0;
-  width: 100%;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #1d1b1b;
-  font-weight: bold;
-  position: relative;
-  margin-right: 15px;
-}
-
-.nav-link:hover::after {
-  content: "";
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #090707;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.or-container {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.or-line {
-  flex: 1;
-  height: 1px;
-  background-color: #333;
-}
-
-.or-text {
-  padding: 0 10px;
-  color: #333;
-}
-
-.admin-login-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.admin-login-button:hover {
-  background-color: #333;
-}
-
-.admin-login-button:focus {
-  outline: none;
-}
-
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-welcome-page-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.welcome-page-button:hover {
-  background-color: #333;
-}
-
-.welcome-page-button:focus {
-  outline: none;
-}
-
-.forgotpassword {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-}
-
-.title {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  font-size: 16px;
-  color: #555;
+.form-group {
   margin-bottom: 20px;
-  text-align: center;
 }
 
-.footer {
+.red-strip.bottom {
+  position: fixed;
+  bottom: 0;
+  height: 123px;
+  background-color: rgb(183, 71, 71);
   width: 100%;
-  height: 20vh;
-  background-color: rgb(166, 65, 65);
-  margin-top: auto;
+  margin-top: 10px;
+}
+
+.sub-text {
+  font-weight: 300;
+  margin-bottom: 20px;
 }
 </style>

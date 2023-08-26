@@ -3,10 +3,8 @@
     <div class="background"></div>
     <div class="content">
       <div class="box">
-        <h2 class="title">
-          Your password will be sent to your email account in a few minutes.
-        </h2>
-        <div class="check-mark">&#10003;</div>
+        <h2 class="title">Your new password has been generated:</h2>
+        <div class="check-mark">{{ $route.params.newPassword }}</div>
         <button class="return-button" @click="returnToLogin">Login</button>
       </div>
     </div>
@@ -15,7 +13,8 @@
 
 <script>
 export default {
-  name: "ContactSent",
+  name: "ForgotPasswordSent",
+  props: ["newPassword"],
   methods: {
     returnToLogin() {
       this.$router.push({ name: "Login" });
