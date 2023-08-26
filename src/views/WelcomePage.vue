@@ -33,40 +33,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Welcome",
-  data() {
-    return {
-      menuItems: ["Home", "Rooms", "About", "Contact", "Log Out"],
-    };
-  },
-  methods: {
-    scrollToContent() {
-      const element = document.querySelector(".information-background");
-      if (element) {
-        window.scrollTo({
-          top: element.offsetTop,
-          behavior: "smooth",
-        });
-      }
-    },
-    navigateTo(item) {
-      if (item === "welcomepage") {
-        this.$router.push({ name: "welcomepage" });
-      } else if (item === "Rooms") {
-        this.$router.push({ name: "Rooms" });
-      } else if (item === "About") {
-        this.$router.push({ name: "About" });
-      } else if (item === "Contact") {
-        this.$router.push({ name: "Contact" });
-      } else if (item === "Log Out") {
-        // Implementirajte logiku za odjavu korisnika
-      }
-    },
-  },
-};
-</script>
+<script></script>
 
 <style scoped>
 .welcomepage {

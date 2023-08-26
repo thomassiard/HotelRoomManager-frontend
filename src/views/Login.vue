@@ -1,23 +1,39 @@
 <template>
   <div class="login">
-    <div class="nav-bar">
-      <div class="nav-left">
-        <router-link to="/" class="nav-link">HOTEL ROOM MANAGER</router-link>
+    <!-- Navigation Bar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark py-3"
+      style="margin-bottom: 0"
+    >
+      <div class="container-fluid">
+        <router-link to="/" class="navbar-brand">
+          <span class="hotel-room-manager">HOTEL ROOM MANAGER</span>
+        </router-link>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <router-link to="/signup" class="nav-link ml-3 text-white">
+              SIGNUP
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link ml-3 text-red">
+              LOGIN
+            </router-link>
+          </li>
+        </ul>
       </div>
-      <div class="nav-right">
-        <router-link to="/signup" class="nav-link">SIGNUP</router-link>
-        <router-link to="/login" class="nav-link">LOGIN</router-link>
-      </div>
+    </nav>
+
+    <div class="image-container text-center mt-0 mb-10">
+      <img src="../assets/signup.jpg" alt="SignUp Image" class="signup-image" />
     </div>
-    <div class="image-container">
-      <img src="src/assets/login.jpg" alt="Login Image" class="login-image" />
-      <h1 class="login-title">Login</h1>
-    </div>
+
     <div class="form-container">
+      <h2 class="text-center">Login</h2>
       <form @submit.prevent="submitForm">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" v-model="email" />
+          <input type="email" id="email" v-model="email" class="form-control" />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -26,39 +42,20 @@
               :type="showPassword ? 'text' : 'password'"
               id="password"
               v-model="password"
+              class="form-control"
             />
             <span class="password-toggle" @click="togglePasswordVisibility">
               {{ showPassword ? "Hide" : "Show" }}
             </span>
-            <router-link to="/forgotpassword" class="forgotpassword-link"
-              >Forgot password?</router-link
-            >
           </div>
         </div>
-        <div class="button-container">
-          <button class="login-button" @click="submitForm">Login</button>
-        </div>
-        <div class="error-message" v-if="errorMessage">{{ errorMessage }}</div>
-        <div class="or-container">
-          <div class="or-line"></div>
-          <div class="or-text">Or</div>
-          <div class="or-line"></div>
-        </div>
-        <div class="button-container">
-          <button class="admin-login-button" @click="adminLogin">
-            Admin Login
-          </button>
-        </div>
-        <div class="button-container">
-          <button class="welcome-page-button" @click="goToWelcomePage">
-            Welcome Page
-          </button>
+        <div class="button-container text-center bold-text">
+          <button class="login-button" type="submit">Login</button>
         </div>
       </form>
     </div>
-    <div class="footer">
-      <div class="red-bar"></div>
-    </div>
+    <!-- Red strip at the bottom -->
+    <div class="red-strip bottom"></div>
   </div>
 </template>
 
@@ -71,243 +68,138 @@ export default {
       email: "",
       password: "",
       showPassword: false,
-      errorMessage: "error",
-      token: "",
     };
-  },
-  // Izmjenjeni created() blok
-  created() {
-    // Ne trebate provjeravati token ovdje, to će se riješiti automatski
-    // kad se korisnik preusmjeri na login stranicu
   },
   methods: {
     async submitForm() {
       try {
-        // Izmjena: Uklonjena provjera ispravnosti podataka
-        // Ovdje samo preusmjerite korisnika na welcomepage.vue
-        this.goToWelcomePage();
+        const response = await axios.post("/api/auth/login", {
+          email: this.email,
+          password: this.password,
+        });
+
+        console.log(response.data);
+
+        if (response.data.token) {
+          console.log("User logged in successfully");
+          this.handleSuccessfulLogin();
+        } else {
+          console.log("Invalid credentials");
+          this.handleUnsuccessfulLogin();
+        }
       } catch (error) {
         console.error("Login error:", error);
-        this.errorMessage = "Invalid credentials"; // Postavite poruku o grešci
-        this.token = ""; // Resetirajte token
       }
-    },
-    adminLogin() {
-      // Ovdje dodajte kod za preusmjeravanje na welcomepage.vue
-      this.$router.push("/welcomepage");
-    },
-    goToWelcomePage() {
-      this.$router.push("/welcomepage");
     },
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
+    },
+    handleSuccessfulLogin() {
+      this.showWrongPassword = false; // Sakrij poruku o pogrešnoj lozinci
+      alert("Successfully logged in!");
+      this.$router.push("/welcomepage");
+    },
+    handleUnsuccessfulLogin() {
+      this.showWrongPassword = false;
+      alert("Wrong Password!");
+      this.$router.push("/login"); // Prikaži poruku o pogrešnoj lozinci
     },
   },
 };
 </script>
 
-<style>
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+<style scoped>
+/* Custom styles */
+.bg-dark {
+  background-color: black;
 }
 
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+.nav-link {
+  font-weight: bold;
 }
 
-.login-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.bold-text {
+  font-weight: bold;
 }
-
-.login-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36px;
-  color: black;
-}
-
 .form-container {
   width: 100%;
   max-width: 400px;
-  margin-top: 20px;
+  margin: 0 auto; /* Dodali smo margin: 0 auto; za horizontalno centriranje */
   padding: 20px;
-  background-color: white;
+  background-color: white; /* Dodali smo pozadinu kako bi se istaknula forma */
+  border-radius: 10px; /* Zaobljeni rubovi forme */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lagana sjena ispod forme */
+}
+.hotel-room-manager {
+  font-weight: bold;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.text-red {
+  color: rgb(183, 71, 71);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-input {
+.signup-image {
   width: 100%;
-  padding: 8px;
-  border: 1px solid black;
+  max-height: 250px;
+  object-fit: cover;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+.signup-image-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .login-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: black;
-  color: white;
+  background-color: rgb(238, 238, 178);
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .login-button:hover {
-  background-color: #333;
+  background-color: rgb(238, 238, 178);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.login-button:focus {
-  outline: none;
+.form-group {
+  margin-bottom: 20px;
 }
 
 .password-input {
   position: relative;
 }
 
+.password-input input {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
 .password-toggle {
   position: absolute;
-  top: 30%;
-  right: 10px;
+  top: 50%;
+  right: 1rem;
   transform: translateY(-50%);
   cursor: pointer;
-  color: #555;
 }
 
-.forgot-password-link {
-  display: block;
-  margin-top: 5px;
-  color: #555;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.footer {
+.red-strip.bottom {
+  position: fixed;
+  bottom: 0;
+  height: 123px; /* Ovdje postavite istu visinu kao i donji dio crvene trake u home.vue */
+  background-color: rgb(183, 71, 71);
   width: 100%;
-  height: 20vh;
-  background-color: rgb(166, 65, 65);
-  margin-top: auto;
-}
-
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgb(166, 65, 65);
-  padding: 10px 0;
-  width: 100%;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #1d1b1b;
-  font-weight: bold;
-  position: relative;
-  margin-right: 15px;
-}
-
-.nav-link:hover::after {
-  content: "";
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #090707;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.or-container {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.or-line {
-  flex: 1;
-  height: 1px;
-  background-color: #333;
-}
-
-.or-text {
-  padding: 0 10px;
-  color: #333;
-}
-
-.admin-login-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.admin-login-button:hover {
-  background-color: #333;
-}
-
-.admin-login-button:focus {
-  outline: none;
-}
-
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-welcome-page-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.welcome-page-button:hover {
-  background-color: #333;
-}
-
-.welcome-page-button:focus {
-  outline: none;
+  margin-top: 10px; /* Podesite ovu vrijednost prema svojim potrebama za poziciju trake */
 }
 </style>
