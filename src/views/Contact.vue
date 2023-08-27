@@ -1,192 +1,239 @@
 <template>
-  <div class="contact-container">
-    <div class="contact-header">
-      <div class="navigation-bar">
-        <div class="nav-left">
-          <v-avatar class="profile-avatar">
-            <v-img src="@/assets/user-icon.png"></v-img>
-          </v-avatar>
-          <p class="username">Korisnik</p>
-        </div>
-        <div class="nav-right">
-          <div class="nav-links">
-            <div
-              class="nav-link"
-              v-for="item in menuItems"
-              :key="item"
-              @click="navigateTo(item)"
+  <div class="contact">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+      <div class="container-fluid">
+        <router-link to="/profile" class="navbar-brand">
+          <img
+            src="path-to-your-profile-image"
+            alt="Profile Image"
+            class="profile-image"
+          />
+          <span class="username">John Doe (Guest)</span>
+        </router-link>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <router-link to="/welcomepage" class="nav-link ml-3 text-white"
+              >HOME</router-link
             >
-              {{ item }}
+          </li>
+          <li class="nav-item">
+            <router-link to="/rooms" class="nav-link ml-3 text-white"
+              >ROOMS</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link to="/gallery" class="nav-link ml-3 text-white"
+              >GALLERY</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link to="/reviews" class="nav-link ml-3 text-white"
+              >REVIEWS</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link to="/about" class="nav-link ml-3 text-white"
+              >ABOUT</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link to="/contact" class="nav-link ml-3 text-white"
+              >CONTACT</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <a @click="logout" class="nav-link ml-3 text-black logout-link"
+              >LOG OUT</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Crvena traka ispod navigation bara -->
+    <div class="red-strip top"></div>
+
+    <!-- Sadržaj Contact Us stranice -->
+    <div class="contact-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="contact-form">
+              <h1 class="display-4 text-center">Contact Us</h1>
+              <form>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    placeholder="Enter your email here..."
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="message">Message:</label>
+                  <textarea
+                    id="message"
+                    class="form-control"
+                    rows="5"
+                    style="resize: none; max-height: 200px"
+                    placeholder="Enter your message here..."
+                  ></textarea>
+                </div>
+                <button class="submit-button" type="submit">Submit</button>
+              </form>
             </div>
-            <button class="logout-button" @click="logout">Log out</button>
+          </div>
+          <div class="col-md-6">
+            <div class="contact-images text-right">
+              <img
+                src="/src/assets/contact3.jpg"
+                alt="Contact Image 1"
+                class="contact-image img-fluid"
+              />
+              <img
+                src="/src/assets/contact4.jpg"
+                alt="Contact Image 2"
+                class="contact-image img-fluid mt-4"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="contact-content">
-      <div class="contact-form">
-        <h2 class="contact-title">Contact</h2>
-        <form>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" v-model="name" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" v-model="email" />
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" v-model="message"></textarea>
-          </div>
-          <button class="submit-button" @click="submitForm">Submit</button>
-        </form>
-      </div>
-      <div class="image-container">
-        <img src="@/assets/contact.jpg" alt="Contact Image" />
-      </div>
-    </div>
-
-    <div class="contact-footer"></div>
+    <!-- Red strip at the bottom -->
+    <div class="red-strip bottom"></div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "Contact",
   data() {
     return {
-      name: "",
-      email: "",
-      message: "",
-      menuItems: ["Home", "Rooms", "About", "Contact"],
+      email: "", // Dodajte novo polje za email
+      message: "", // Dodajte novo polje za poruku
     };
   },
   methods: {
-    navigateTo(item) {
-      if (item === "Home") {
-        this.$router.push({ name: "WelcomePage" });
-      } else {
-        this.$router.push({ name: item });
+    async submitForm() {
+      try {
+        this.$router.push({
+          name: "ContactSent",
+        });
+      } catch (error) {
+        console.error("Password reset error:", error);
       }
-    },
-    logout() {
-      // Logika za odjavu
-    },
-    submitForm() {
-      // Logika za slanje forme
-      // Nakon slanja forme, preusmjeri na ContactSent.vue
-      this.$router.push({ name: "ContactSent" });
     },
   },
 };
 </script>
 
 <style scoped>
-.contact-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #f5f5f5; /* Svijetla siva pozadina */
-}
-
-.contact-header,
-.contact-footer {
-  height: 100px; /* Visina tamno crvenih traka */
-  background-color: rgb(166, 65, 65);
-}
-
-.contact-content {
-  flex: 1;
-  background-color: white; /* Bijeli srednji dio */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.navigation-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: rgb(166, 65, 65);
-}
-
-.profile-avatar {
-  margin-right: 10px;
-}
-
-.username {
-  font-weight: bold;
-  color: white;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-}
+/* Custom styles */
 
 .nav-link {
-  margin-right: 20px;
-  cursor: pointer;
-  color: white;
-}
-
-.logout-button {
-  border: 1px solid white;
-  background-color: transparent;
-  color: white;
-  padding: 5px 10px;
-  cursor: pointer;
+  font-weight: bold;
 }
 
 .contact-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
+  margin-top: 100px;
+  background-color: #f8f9fa;
+  padding: 100px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.form-group {
-  margin-bottom: 15px;
-  width: 100%;
+.contact-paragraph {
+  font-size: 1.15rem;
 }
 
-label {
-  font-weight: bold;
+.contact-images {
+  margin-top: 65px;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
+.contact-content {
+  margin-top: 10rem;
+}
+
+.navbar.bg-dark-transparent {
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.text-red {
+  color: rgb(183, 71, 71);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .submit-button {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
+  margin: 0 auto; /* Centriranje gumba */
   margin-top: 10px;
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgb(238, 238, 178);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-.image-container {
-  width: 20%; /* Prilagodite veličinu slike po potrebi */
-  display: flex;
-  justify-content: flex-start; /* Poravnavanje slike lijevo */
-  align-items: center;
-  margin-top: 20px;
+.submit-button:hover {
+  background-color: rgb(238, 238, 178);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.image-container img {
-  max-width: 100%;
-  height: auto;
+.contact-images {
+  margin-top: 65px;
+}
+
+.contact-image {
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.contact-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.red-strip.top {
+  position: fixed;
+  top: 68px; /* Visina navigacijskog bara */
+  height: 123px; /* Visina crvene trake */
+  background-color: rgb(183, 71, 71);
+  width: 100%;
+}
+
+.logout-link {
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: white;
+}
+
+.red-strip.bottom {
+  position: fixed;
+  bottom: 0;
+  height: 123px;
+  background-color: rgb(183, 71, 71);
+  width: 100%;
+  margin-top: 10px;
 }
 </style>

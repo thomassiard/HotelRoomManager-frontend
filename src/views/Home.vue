@@ -40,7 +40,7 @@
             <img
               src="src/assets/home1.jpg"
               alt="Home1 slika"
-              class="img-fluid"
+              class="img-fluid rounded-image"
             />
           </div>
         </div>
@@ -60,7 +60,7 @@
             <img
               src="src/assets/Home2.jpg"
               alt="Home2 slika"
-              class="img-fluid"
+              class="img-fluid rounded-image"
             />
           </div>
         </div>
@@ -143,6 +143,10 @@ export default {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.rounded-image {
+  border-radius: 10px; /* Prilagodite vrednost da biste dobili željeni nivo zaobljenosti */
 }
 
 .red-strip {

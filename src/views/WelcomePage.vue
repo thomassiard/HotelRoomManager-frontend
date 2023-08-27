@@ -218,6 +218,9 @@ export default {
   cursor: pointer;
 }
 
+.nav-link {
+  font-weight: bold;
+}
 /* Stilovi za LOG OUT link */
 .logout-link {
   color: black;
