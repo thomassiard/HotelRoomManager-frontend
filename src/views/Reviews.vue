@@ -1,15 +1,11 @@
 <template>
-  <div class="about">
+  <div class="reviews">
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div class="container-fluid">
+        <div class="user-image-navbar"></div>
         <router-link to="/profile" class="navbar-brand">
-          <img
-            src="path-to-your-profile-image"
-            alt="Profile Image"
-            class="profile-image"
-          />
-          <span class="username">John Doe (Guest)</span>
+          <span class="user">Guest</span>
         </router-link>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -54,57 +50,113 @@
     <!-- Crvena traka ispod navigation bara -->
     <div class="red-strip top"></div>
 
-    <!-- Sadržaj About stranice -->
-    <div class="about-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="about-text">
-              <h1 class="display-4 text-center">About Us</h1>
-              <p class="about-paragraph">
-                Introducing Hotel Room Manager, an innovative project designed
-                to redefine your hotel experience. With our intuitive platform,
-                managing your room reservations and preferences becomes
-                effortlessly simple.
-                <br />
-                <br />Whether you are a guest seeking seamless accommodation or
-                a hotel manager aiming to elevate guest satisfaction, Hotel Room
-                Manager empowers you to command your stay effortlessly, in just
-                a few clicks.
-                <br />
-                <br />
-                Whether your journey is for business or leisure, our meticulous
-                attention to detail guarantees that you will find the perfect
-                room that suits your needs. Discover the art of hospitality as
-                you step into our realm.
-                <br />
-                <br />
-                We cordially invite you to explore all that our hotel has to
-                offer. Your journey with us is our priority, and we eagerly
-                await the opportunity to welcome you with open arms.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="about-images text-right">
-              <img
-                src="/src/assets/about.jpg"
-                alt="About Image 1"
-                class="about-image img-fluid"
-              />
-              <img
-                src="/src/assets/about2.jpg"
-                alt="About Image 2"
-                class="about-image img-fluid mt-4"
-              />
-            </div>
-          </div>
+    <!-- Naslov i opis -->
+    <div class="reviews-header">
+      <h1 class="display-4 text-center">REVIEWS</h1>
+      <p class="text-center">
+        Here you can see some of our guests reviews about their experience with
+        our rooms.
+      </p>
+    </div>
+
+    <!-- Containeri za reviews -->
+    <div class="reviews-content">
+      <!-- Prvi review container -->
+      <div class="review">
+        <div class="profile-image review1-image"></div>
+        <div class="username black-text">Marko Novak</div>
+        <div class="rating">
+          <span class="stars">★★★★★</span>
         </div>
+        <p class="review-description">
+          The hotel was amazing! The room was perfect and very clean. The staff
+          was so nice and helpful. I would definitely recommend this hotel to
+          anyone and would stay here again in a heartbeat!
+        </p>
+      </div>
+
+      <!-- Drugi review container -->
+      <div class="review">
+        <div class="profile-image review2-image"></div>
+        <div class="username black-text">Ana Petrović</div>
+        <div class="rating">
+          <span class="stars">★★★★</span>
+        </div>
+        <p class="review-description">
+          I was not satisfied with the cleanliness of the hotel room. Despite
+          the staff being friendly and accommodating, I noticed that some parts
+          of the room were not adequately cleaned. Taking that into
+          consideration, I gave the hotel four stars. However, the hotel's
+          location is excellent, close to restaurants and shops, and I hope to
+          visit again.
+        </p>
+      </div>
+
+      <!-- Treći review container -->
+      <div class="review">
+        <div class="profile-image review3-image"></div>
+        <div class="username black-text">Aleksandar Radulović</div>
+        <div class="rating">
+          <span class="stars">★★★★★</span>
+        </div>
+        <p class="review-description">
+          I stayed for a business trip and it was a great experience. The room
+          was clean and comfortable and the staff was friendly and helpful. I
+          would definitely recommend this hotel to others.
+        </p>
       </div>
     </div>
 
-    <!-- Red strip at the bottom -->
-    <div class="red-strip bottom"></div>
+    <!-- Drugi red slika -->
+    <div class="reviews-content">
+      <!-- Treći review container -->
+      <div class="review">
+        <div class="profile-image review4-image"></div>
+        <div class="username black-text">Ivana Jovanović</div>
+        <div class="rating">
+          <span class="stars">★★★</span>
+        </div>
+        <p class="review-description">
+          I had a decent stay at the hotel. The room was okay in terms of
+          cleanliness, and the staff was friendly. However, there's room for
+          improvement. I gave it a 3-star rating because of these factors. The
+          hotel's location was convenient though, close to restaurants and
+          shops.
+        </p>
+      </div>
+
+      <!-- Četvrti review container -->
+      <div class="review">
+        <div class="profile-image review5-image"></div>
+        <div class="username black-text">David Kovač</div>
+        <div class="rating">
+          <span class="stars">★★★★★</span>
+        </div>
+        <p class="review-description">
+          Amazing stay! The room was spotless and cozy, and the staff was super
+          friendly. Perfectly located near great restaurants and attractions.
+          Solid 5-star experience!
+        </p>
+      </div>
+
+      <!-- Peti review container -->
+      <div class="review">
+        <div class="profile-image review6-image"></div>
+        <div class="username black-text">Maja Lukić</div>
+        <div class="rating">
+          <span class="stars">★★★★</span>
+        </div>
+        <p class="review-description">
+          Had a decent stay. The room was comfortable and the staff were
+          friendly. Noticed a few cleanliness issues, which is why I'm giving it
+          4 stars. The hotel's location is fantastic, near restaurants and
+          shops. Would consider staying again.
+        </p>
+      </div>
+
+      <!-- Red strip at the bottom -->
+      <div class="red-strip bottom"></div>
+    </div>
   </div>
 </template>
 
@@ -146,15 +198,28 @@ export default {
   margin-top: 65px;
 }
 
-.about-image {
-  max-height: 300px;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.review1-image {
+  background-image: url(src/assets/review1.jpg);
 }
 
-.about-content {
-  margin-top: 10rem;
+.review2-image {
+  background-image: url(src/assets/review4.jpg);
+}
+
+.review3-image {
+  background-image: url(src/assets/review3.png);
+}
+
+.review4-image {
+  background-image: url(src/assets/review5.jpg);
+}
+
+.review5-image {
+  background-image: url(src/assets/review2.jpg);
+}
+
+.review6-image {
+  background-image: url(src/assets/review6.jpg);
 }
 
 .navbar.bg-dark-transparent {
@@ -203,5 +268,74 @@ export default {
   background-color: rgb(183, 71, 71);
   width: 100%;
   margin-top: 10px;
+}
+
+.reviews-header {
+  text-align: center;
+  display: inline-block;
+  margin-top: 10rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.reviews-content {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.review {
+  width: 30%;
+  text-align: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  background-size: cover; /* Slika će se razvući da upotpuni cijeli prostor */
+  background-position: center; /* Slika će biti centrirana */
+}
+
+.rating {
+  font-size: 24px;
+}
+
+.review-description {
+  font-size: 1.15rem;
+}
+
+.user-image-navbar {
+  width: 2%;
+  height: 40px;
+  background-color: #000000;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-size: cover;
+  background-position: center;
+  /* Dodajte svoju pozadinsku sliku */
+  background-image: url(src/assets/user-image.jpg);
+}
+
+.user {
+  color: WHITE;
+  font-weight: bold;
+}
+
+.username {
+  color: black;
+  font-weight: bold;
 }
 </style>

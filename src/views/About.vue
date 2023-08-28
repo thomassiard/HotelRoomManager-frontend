@@ -3,13 +3,9 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div class="container-fluid">
+        <div class="user-image-navbar"></div>
         <router-link to="/profile" class="navbar-brand">
-          <img
-            src="path-to-your-profile-image"
-            alt="Profile Image"
-            class="profile-image"
-          />
-          <span class="username">John Doe (Guest)</span>
+          <span class="username">Guest</span>
         </router-link>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -142,6 +138,11 @@ export default {
   font-size: 1.15rem;
 }
 
+.username {
+  color: white;
+  font-weight: bold;
+}
+
 .about-images {
   margin-top: 65px;
 }
@@ -203,5 +204,17 @@ export default {
   background-color: rgb(183, 71, 71);
   width: 100%;
   margin-top: 10px;
+}
+
+.user-image-navbar {
+  width: 2%;
+  height: 40px;
+  background-color: #000000;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-size: cover;
+  background-position: center;
+  /* Dodajte svoju pozadinsku sliku */
+  background-image: url(src/assets/user-image.jpg);
 }
 </style>

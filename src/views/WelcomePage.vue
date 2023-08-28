@@ -3,13 +3,9 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark-transparent py-3">
       <div class="container-fluid">
+        <div class="user-image-navbar"></div>
         <router-link to="/profile" class="navbar-brand">
-          <img
-            src="path-to-your-profile-image"
-            alt="Profile Image"
-            class="profile-image"
-          />
-          <span class="username">John Doe (Guest)</span>
+          <span class="username">Guest</span>
         </router-link>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -249,13 +245,6 @@ export default {
   margin-right: 10px;
 }
 
-/* Stilovi za korisničko ime */
-.username {
-  color: white;
-  font-weight: bold;
-}
-
-/* Stilovi za form container na desnoj strani */
 .form-container-right {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
@@ -423,5 +412,17 @@ export default {
 
 .red-link:hover::after {
   transform: scaleX(1);
+}
+
+.user-image-navbar {
+  width: 2%;
+  height: 40px;
+  background-color: #000000;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-size: cover;
+  background-position: center;
+  /* Dodajte svoju pozadinsku sliku */
+  background-image: url(src/assets/user-image.jpg);
 }
 </style>
