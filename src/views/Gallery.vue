@@ -55,7 +55,6 @@
       <h1 class="display-4 text-center">GALLERY</h1>
       <p class="text-center">
         Here you can see our hotel room manager's photo gallery.
-        <!-- Dodajte više teksta po želji -->
       </p>
     </div>
 
@@ -101,16 +100,13 @@ export default {
   data() {},
   methods: {
     logout() {
-      // Metoda za odjavu korisnika
-      this.$router.push("/"); // Ovdje koristimo router za vraćanje na početnu stranicu
+      this.$router.push("/");
     },
   },
 };
 </script>
 
 <style scoped>
-/* Custom styles */
-
 .nav-link {
   font-weight: bold;
 }
@@ -132,8 +128,8 @@ export default {
 
 .red-strip.top {
   position: fixed;
-  top: 68px; /* Visina navigacijskog bara */
-  height: 123px; /* Visina crvene trake */
+  top: 68px;
+  height: 123px;
   background-color: rgb(183, 71, 71);
   width: 100%;
 }
@@ -205,8 +201,8 @@ export default {
   background-color: #ddd;
   border-radius: 50%;
   margin: 0 auto 10px;
-  background-size: cover; /* Slika će se razvući da upotpuni cijeli prostor */
-  background-position: center; /* Slika će biti centrirana */
+  background-size: cover;
+  background-position: center;
 }
 
 .user-image-navbar {
@@ -217,7 +213,6 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  /* Dodajte svoju pozadinsku sliku */
   background-image: url(src/assets/user-image.jpg);
 }
 

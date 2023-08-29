@@ -111,16 +111,13 @@ export default {
   data() {},
   methods: {
     logout() {
-      // Metoda za odjavu korisnika
-      this.$router.push("/"); // Ovdje koristimo router za vraćanje na početnu stranicu
+      this.$router.push("/");
     },
   },
 };
 </script>
 
 <style scoped>
-/* Custom styles */
-
 .nav-link {
   font-weight: bold;
 }
@@ -214,7 +211,6 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  /* Dodajte svoju pozadinsku sliku */
   background-image: url(src/assets/user-image.jpg);
 }
 </style>

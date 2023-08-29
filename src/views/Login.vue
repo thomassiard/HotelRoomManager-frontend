@@ -49,7 +49,9 @@
             </span>
           </div>
           <div class="form-group">
-            <router-link to="/forgotpassword" class="forgot-password-link"
+            <router-link
+              to="/forgotpassword"
+              class="forgot-password-link text-decoration-none"
               >Forgot password?</router-link
             >
           </div>
@@ -100,21 +102,20 @@ export default {
       this.showPassword = !this.showPassword;
     },
     handleSuccessfulLogin() {
-      this.showWrongPassword = false; // Sakrij poruku o pogrešnoj lozinci
+      this.showWrongPassword = false;
       alert("Successfully logged in!");
       this.$router.push("/welcomepage");
     },
     handleUnsuccessfulLogin() {
       this.showWrongPassword = false;
       alert("Wrong Password!");
-      this.$router.push("/login"); // Prikaži poruku o pogrešnoj lozinci
+      this.$router.push("/login");
     },
   },
 };
 </script>
 
 <style scoped>
-/* Custom styles */
 .bg-dark {
   background-color: black;
 }
@@ -129,11 +130,11 @@ export default {
 .form-container {
   width: 100%;
   max-width: 400px;
-  margin: 0 auto; /* Dodali smo margin: 0 auto; za horizontalno centriranje */
+  margin: 0 auto;
   padding: 20px;
-  background-color: white; /* Dodali smo pozadinu kako bi se istaknula forma */
-  border-radius: 10px; /* Zaobljeni rubovi forme */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lagana sjena ispod forme */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .hotel-room-manager {
   font-weight: bold;
@@ -199,20 +200,35 @@ export default {
   cursor: pointer;
 }
 
+.forgot-password-link {
+  color: rgb(183, 71, 71);
+  font-weight: bold;
+  position: relative;
+}
+
+.forgot-password-link::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(183, 71, 71);
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.forgot-password-link:hover::after {
+  transform: scaleX(1);
+}
+
 .red-strip.bottom {
   position: fixed;
   bottom: 0;
-  height: 123px; /* Ovdje postavite istu visinu kao i donji dio crvene trake u home.vue */
+  height: 123px;
   background-color: rgb(183, 71, 71);
   width: 100%;
-  margin-top: 10px; /* Podesite ovu vrijednost prema svojim potrebama za poziciju trake */
-}
-
-.forgot-password-link {
-  color: rgb(183, 71, 71); /* Postavite boju po vašem izboru */
-  font-size: 13px; /* Prilagodite veličinu fonta prema potrebi */
-  text-decoration: underline;
-  cursor: pointer;
-  transition: color 0.3s;
+  margin-top: 10px;
 }
 </style>

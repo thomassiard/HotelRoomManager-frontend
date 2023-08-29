@@ -77,7 +77,6 @@ export default {
 </script>
 
 <style scoped>
-/* Custom styles */
 .bg-dark {
   background-color: black;
 }
@@ -100,12 +99,6 @@ export default {
 }
 .hotel-room-manager {
   font-weight: bold;
-}
-
-.text-red {
-  color: rgb(183, 71, 71);
-  text-decoration: none;
-  transition: color 0.3s;
 }
 
 .login-image {

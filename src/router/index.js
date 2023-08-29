@@ -39,35 +39,35 @@ const routes = [
     component: () => import("@/views/Profile.vue"),
   },
   {
-    path: "/gallery",
-    name: "Gallery",
-    component: () => import("@/views/Gallery.vue"),
+    path: "/adminpanel",
+    name: "AdminPanel",
+    component: () => import("@/views/AdminPanel.vue"),
   },
-
-  {
-    path: "/reviews",
-    name: "Reviews",
-    component: () => import("@/views/Reviews.vue"),
-  },
-
   {
     path: "/rooms",
     name: "Rooms",
     component: () => import("@/views/Rooms.vue"),
   },
-
+  {
+    path: "/gallery",
+    name: "Gallery",
+    component: () => import("@/views/Gallery.vue"),
+  },
+  {
+    path: "/reviews",
+    name: "Reviews",
+    component: () => import("@/views/Reviews.vue"),
+  },
   {
     path: "/about",
     name: "About",
     component: () => import("@/views/About.vue"),
   },
-
   {
     path: "/contact",
     name: "Contact",
     component: () => import("@/views/Contact.vue"),
   },
-
   {
     path: "/contactsent",
     name: "ContactSent",

@@ -109,7 +109,7 @@
 
     <!-- Drugi red slika -->
     <div class="reviews-content">
-      <!-- Treći review container -->
+      <!-- Četvrti review container -->
       <div class="review">
         <div class="profile-image review4-image"></div>
         <div class="username black-text">Ivana Jovanović</div>
@@ -125,7 +125,7 @@
         </p>
       </div>
 
-      <!-- Četvrti review container -->
+      <!-- Peti review container -->
       <div class="review">
         <div class="profile-image review5-image"></div>
         <div class="username black-text">David Kovač</div>
@@ -139,7 +139,7 @@
         </p>
       </div>
 
-      <!-- Peti review container -->
+      <!-- Šesti review container -->
       <div class="review">
         <div class="profile-image review6-image"></div>
         <div class="username black-text">Maja Lukić</div>
@@ -167,35 +167,15 @@ export default {
   data() {},
   methods: {
     logout() {
-      // Metoda za odjavu korisnika
-      this.$router.push("/"); // Ovdje koristimo router za vraćanje na početnu stranicu
+      this.$router.push("/");
     },
   },
 };
 </script>
 
 <style scoped>
-/* Custom styles */
-
 .nav-link {
   font-weight: bold;
-}
-
-.about-text {
-  background-color: #f8f9fa;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.about-paragraph {
-  font-size: 1.15rem;
-}
-
-.about-images {
-  margin-top: 65px;
 }
 
 .review1-image {
@@ -239,8 +219,8 @@ export default {
 
 .red-strip.top {
   position: fixed;
-  top: 68px; /* Visina navigacijskog bara */
-  height: 123px; /* Visina crvene trake */
+  top: 68px;
+  height: 123px;
   background-color: rgb(183, 71, 71);
   width: 100%;
 }
@@ -253,12 +233,6 @@ export default {
   border-radius: 5px;
   transition: background-color 0.2s, color 0.2s;
   background-color: white;
-}
-
-.about-image {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
 }
 
 .red-strip.bottom {
@@ -305,8 +279,8 @@ export default {
   background-color: #ddd;
   border-radius: 50%;
   margin: 0 auto 10px;
-  background-size: cover; /* Slika će se razvući da upotpuni cijeli prostor */
-  background-position: center; /* Slika će biti centrirana */
+  background-size: cover;
+  background-position: center;
 }
 
 .rating {
@@ -325,7 +299,6 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  /* Dodajte svoju pozadinsku sliku */
   background-image: url(src/assets/user-image.jpg);
 }
 

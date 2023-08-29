@@ -110,8 +110,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      email: "", // Dodajte novo polje za email
-      message: "", // Dodajte novo polje za poruku
+      email: "",
+      message: "",
     };
   },
   methods: {
@@ -125,16 +125,13 @@ export default {
       }
     },
     logout() {
-      // Metoda za odjavu korisnika
-      this.$router.push("/"); // Ovdje koristimo router za vraćanje na početnu stranicu
+      this.$router.push("/");
     },
   },
 };
 </script>
 
 <style scoped>
-/* Custom styles */
-
 .nav-link {
   font-weight: bold;
 }
@@ -180,7 +177,7 @@ export default {
 }
 
 .submit-button {
-  margin: 0 auto; /* Centriranje gumba */
+  margin: 0 auto;
   margin-top: 10px;
   display: block;
   padding: 10px 20px;
@@ -217,8 +214,8 @@ export default {
 
 .red-strip.top {
   position: fixed;
-  top: 68px; /* Visina navigacijskog bara */
-  height: 123px; /* Visina crvene trake */
+  top: 68px;
+  height: 123px;
   background-color: rgb(183, 71, 71);
   width: 100%;
 }
@@ -250,7 +247,6 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  /* Dodajte svoju pozadinsku sliku */
   background-image: url(src/assets/user-image.jpg);
 }
 </style>

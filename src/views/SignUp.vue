@@ -25,7 +25,11 @@
     </nav>
 
     <div class="image-container text-center mt-0 mb-10">
-      <img src="../assets/signup.jpg" alt="SignUp Image" class="signup-image" />
+      <img
+        src="src/assets/signup.jpg"
+        alt="SignUp Image"
+        class="signup-image"
+      />
     </div>
 
     <div class="form-container">
@@ -139,14 +143,13 @@ export default {
     },
     handleSuccessfulRegistration() {
       alert("Successfully registered!");
-      this.$router.push("/login"); // Preusmjeravanje na login stranicu
+      this.$router.push("/login");
     },
   },
 };
 </script>
 
 <style scoped>
-/* Custom styles */
 .bg-dark {
   background-color: black;
 }
@@ -164,6 +167,7 @@ export default {
   border-radius: 10px; /* Zaobljeni rubovi forme */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lagana sjena ispod forme */
 }
+
 .hotel-room-manager {
   font-weight: bold;
 }
@@ -230,9 +234,9 @@ export default {
 .red-strip.bottom {
   position: fixed;
   bottom: 0;
-  height: 123px; /* Ovdje postavite istu visinu kao i donji dio crvene trake u home.vue */
+  height: 123px;
   background-color: rgb(183, 71, 71);
   width: 100%;
-  margin-top: 10px; /* Podesite ovu vrijednost prema svojim potrebama za poziciju trake */
+  margin-top: 10px;
 }
 </style>

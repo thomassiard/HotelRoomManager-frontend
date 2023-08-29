@@ -145,10 +145,6 @@ export default {
   transform: translateX(-50%);
 }
 
-.rounded-image {
-  border-radius: 10px; /* Prilagodite vrednost da biste dobili željeni nivo zaobljenosti */
-}
-
 .red-strip {
   height: 123px;
   background-color: rgb(183, 71, 71);
@@ -206,6 +202,10 @@ export default {
 .signup-text {
   margin-top: 10px;
   color: black;
+}
+
+.rounded-image {
+  border-radius: 10px;
 }
 
 .red-link {
