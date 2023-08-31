@@ -20,6 +20,11 @@
               >HOME</router-link
             >
           </li>
+          <li class="nav-item">
+            <router-link to="/adminpanel" class="nav-link ml-3 text-red"
+              >ADMIN</router-link
+            >
+          </li>
           <router-link
             v-if="userRole === 'Admin'"
             to="/admin"
@@ -125,12 +130,12 @@
       </v-btn>
     </div>
     <!-- Red top strip -->
-    <div class="red-strip top"></div>
+    <div class="red-strip top" ref="contentSection"></div>
     <!-- Our Hotel Rooms section -->
     <div class="bg-light py-5 box-container">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 text-center">
+          <div class="col-md-12 service-container text-center">
             <h1 class="display-4">OUR HOTEL ROOMS</h1>
             <p class="lead">
               Our luxurious accommodations and impeccable service are sure to
@@ -143,35 +148,44 @@
         <div class="row">
           <!-- Slike u redu -->
           <div class="col-md-4">
-            <img
-              src="src/assets/welcomeroom1.jpg"
-              alt="Image 1"
-              class="img-fluid room-image"
-            />
+            <div class="room-image-container">
+              <img
+                src="src/assets/welcomeroom1.jpg"
+                alt="Image 1"
+                class="img-fluid room-image"
+              />
+            </div>
           </div>
           <div class="col-md-4">
-            <img
-              src="src/assets/welcomeroom2.jpg"
-              alt="Image 2"
-              class="img-fluid room-image"
-            />
+            <div class="room-image-container">
+              <img
+                src="src/assets/welcomeroom2.jpg"
+                alt="Image 2"
+                class="img-fluid room-image"
+              />
+            </div>
           </div>
           <div class="col-md-4">
-            <img
-              src="src/assets/welcomeroom3.jpg"
-              alt="Image 3"
-              class="img-fluid room-image"
-            />
+            <div class="room-image-container">
+              <img
+                src="src/assets/welcomeroom3.jpg"
+                alt="Image 3"
+                class="img-fluid room-image"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Crvena traka nakon slika -->
+    <div class="red-strip bottom"></div>
+
     <!-- AT YOUR SERVICE section -->
     <div class="bg-light py-5 box-container">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 text-center">
+          <div class="col-md-12 service-container text-center">
             <h1 class="display-4">AT YOUR SERVICE</h1>
             <p class="lead">
               The staff is friendly and knowledgeable and can help you choose
@@ -187,128 +201,204 @@
           <!-- Opcije u redu -->
           <div class="col-md-2 text-center">
             <div class="service-option">
-              <i class="fas fa-wifi"></i>
+              <i class="fa fa-wifi"></i>
               <p>Free Wi-Fi</p>
             </div>
           </div>
           <div class="col-md-2 text-center">
             <div class="service-option">
-              <i class="fas fa-calendar-check"></i>
+              <i class="fa fa-calendar"></i>
               <p>Online Booking</p>
             </div>
           </div>
           <div class="col-md-2 text-center">
             <div class="service-option">
-              <i class="fas fa-star"></i>
+              <i class="fa fa-trophy"></i>
               <p>Best Rated</p>
             </div>
           </div>
           <div class="col-md-2 text-center">
             <div class="service-option">
-              <i class="fas fa-award"></i>
+              <i class="fa fa-star"></i>
               <p>Excellence</p>
             </div>
           </div>
           <div class="col-md-2 text-center">
             <div class="service-option">
-              <i class="fas fa-gift"></i>
+              <i class="fa fa-gift"></i>
               <p>Room Packages</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Red bottom strip -->
+
+    <!-- Crvena traka nakon slika -->
     <div class="red-strip bottom"></div>
 
-    <!-- Naslov "PACKAGES" -->
-    <div class="box-container text-center packages">
-      <h1 class="packages-heading">PACKAGES</h1>
-      <p class="packages-description">
-        Choose from some of the most popular room packages we have to offer.
-      </p>
-    </div>
-
-    <!-- Boxovi za pakete -->
-    <div class="box-container packages">
+    <!-- PACKAGES section -->
+    <div class="bg-light py-5 box-container packages">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <div class="package-box">
-              <img
-                src="src/assets/package1.jpg"
-                alt="Package 1"
-                class="package-image"
-              />
-              <div class="package-rating">
-                <i class="fas fa-star"></i>
-                <p>4.8</p>
-              </div>
-              <p class="package-name">Single Room</p>
-              <button class="book-now-button" @click="redirectToRooms">
-                Book Now
-              </button>
-            </div>
+          <div class="col-md-12 service-container text-center">
+            <h1 class="display-4 packages-heading">PACKAGES</h1>
+            <p class="lead packages-description">
+              Choose from some of the most popular room packages we have to
+              offer.
+            </p>
           </div>
-          <div class="col-md-4">
-            <div class="package-box">
-              <img
-                src="src/assets/package2.jpg"
-                alt="Package 2"
-                class="package-image"
-              />
-              <div class="package-rating">
-                <i class="fas fa-star"></i>
-                <p>4.9</p>
+        </div>
+
+        <!-- Boxovi za pakete -->
+        <div class="box-container packages">
+          <div class="container">
+            <div class="row">
+              <!-- Prvi package box -->
+              <div class="col-md-3">
+                <div class="package-box">
+                  <img
+                    src="src/assets/package1.jpg"
+                    alt="Package 1"
+                    class="package-image"
+                  />
+                  <div class="package-rating">
+                    <i class="fa fa-star"></i>
+                    <!-- Yellow star icon here -->
+                    <p class="package-rating-text">4.5</p>
+                  </div>
+                  <p class="package-name">Single Room</p>
+                  <button class="book-now-button" @click="redirectToRooms">
+                    Book Now
+                  </button>
+                </div>
               </div>
-              <p class="package-name">Double Room</p>
-              <button class="book-now-button" @click="redirectToRooms">
-                Book Now
-              </button>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="package-box">
-              <img
-                src="src/assets/package3.jpg"
-                alt="Package 3"
-                class="package-image"
-              />
-              <div class="package-rating">
-                <i class="fas fa-star"></i>
-                <p>5.0</p>
+              <!-- Drugi package box -->
+              <div class="col-md-3">
+                <div class="package-box">
+                  <img
+                    src="src/assets/package2.jpg"
+                    alt="Package 2"
+                    class="package-image"
+                  />
+                  <div class="package-rating">
+                    <i class="fa fa-star"></i>
+                    <!-- Yellow star icon here -->
+                    <p class="package-rating-text">4.6</p>
+                  </div>
+                  <p class="package-name">Double Room</p>
+                  <button class="book-now-button" @click="redirectToRooms">
+                    Book Now
+                  </button>
+                </div>
               </div>
-              <p class="package-name">VIP Room</p>
-              <button class="book-now-button" @click="redirectToRooms">
-                Book Now
-              </button>
+              <!-- Treći package box -->
+              <div class="col-md-3">
+                <div class="package-box">
+                  <img
+                    src="src/assets/package3.jpg"
+                    alt="Package 3"
+                    class="package-image"
+                  />
+                  <div class="package-rating">
+                    <i class="fa fa-star"></i>
+                    <!-- Yellow star icon here -->
+                    <p class="package-rating-text">4.8</p>
+                  </div>
+                  <p class="package-name">Quad Room</p>
+                  <button class="book-now-button" @click="redirectToRooms">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+              <!-- Četvrti package box -->
+              <div class="col-md-3">
+                <div class="package-box">
+                  <img
+                    src="src/assets/package4.jpg"
+                    alt="Package 4"
+                    class="package-image"
+                  />
+                  <div class="package-rating">
+                    <i class="fa fa-star"></i>
+                    <!-- Yellow star icon here -->
+                    <p class="package-rating-text">5.0</p>
+                  </div>
+                  <p class="package-name">VIP Room</p>
+                  <button class="book-now-button" @click="redirectToRooms">
+                    Book Now
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- REVIEWS dio -->
-    <div class="bg-light py-5 box-container">
-      <!-- Sadržaj REVIEWS dijela -->
+    <!-- Red bottom strip -->
+    <div class="red-strip bottom"></div>
+
+    <!-- MORE FEATURES section -->
+    <div class="bg-light py-5 box-container features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 service-container text-center">
+            <h1 class="display-4 features-heading">MORE FEATURES</h1>
+            <p class="lead features-description">
+              Explore some of the amazing features we offer.
+            </p>
+          </div>
+        </div>
+        <div class="row features-row">
+          <!-- Gallery -->
+          <div class="col-md-3">
+            <div class="feature-box">
+              <h2 class="feature-title">Gallery</h2>
+              <router-link
+                to="/gallery"
+                class="check-out-button text-decoration-none"
+                >CHECK OUT</router-link
+              >
+            </div>
+          </div>
+          <!-- Reviews -->
+          <div class="col-md-3">
+            <div class="feature-box">
+              <h2 class="feature-title">Reviews</h2>
+              <router-link
+                to="/reviews"
+                class="check-out-button text-decoration-none"
+                >CHECK OUT</router-link
+              >
+            </div>
+          </div>
+          <!-- About -->
+          <div class="col-md-3">
+            <div class="feature-box">
+              <h2 class="feature-title">About</h2>
+              <router-link
+                to="/about"
+                class="check-out-button text-decoration-none"
+                >CHECK OUT</router-link
+              >
+            </div>
+          </div>
+          <!-- Contact -->
+          <div class="col-md-3">
+            <div class="feature-box">
+              <h2 class="feature-title">Contact</h2>
+              <router-link
+                to="/contact"
+                class="check-out-button text-decoration-none"
+                >CHECK OUT</router-link
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- GALLERY dio -->
-    <div class="bg-light py-5 box-container">
-      <!-- Sadržaj GALLERY dijela -->
-    </div>
-
-    <!-- ABOUT dio -->
-    <div class="bg-light py-5 box-container">
-      <!-- Sadržaj ABOUT dijela -->
-    </div>
-
-    <!-- CONTACT dio -->
-    <div class="bg-light py-5 box-container">
-      <!-- Sadržaj CONTACT dijela -->
-    </div>
-
-    <!-- Crvena traka na dnu -->
+    <!-- Red bottom strip -->
     <div class="red-strip bottom"></div>
   </div>
 </template>
@@ -325,6 +415,13 @@ export default {
     };
   },
   methods: {
+    scrollToContent() {
+      this.showScrollButton = true;
+      const contentSection = this.$refs.contentSection;
+      if (contentSection) {
+        contentSection.scrollIntoView({ behavior: "smooth" });
+      }
+    },
     async checkUserRole() {
       try {
         const response = await axios.get("/api/auth/user");
@@ -337,13 +434,6 @@ export default {
         }
       } catch (error) {
         console.error("Error checking user role:", error);
-      }
-    },
-    scrollToContent() {
-      this.showScrollButton = true;
-      const contentSection = this.$refs.contentSection;
-      if (contentSection) {
-        contentSection.scrollIntoView({ behavior: "smooth" });
       }
     },
     redirectToRooms() {
@@ -444,14 +534,6 @@ export default {
   transform: translateX(-50%);
 }
 
-.red-strip {
-  height: 123px;
-  background-color: rgb(183, 71, 71);
-  width: 100%;
-  position: relative;
-  z-index: -1;
-}
-
 .navbar.bg-dark-transparent {
   background-color: rgba(0, 0, 0, 0);
   position: absolute;
@@ -503,6 +585,14 @@ export default {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+.red-strip {
+  height: 123px;
+  background-color: rgb(183, 71, 71);
+  width: 100%;
+  position: relative;
+  z-index: -1;
+}
+
 .red-strip.top {
   top: 0;
 }
@@ -527,22 +617,6 @@ export default {
 
 .text-cool-font {
   font-family: "Oswald";
-}
-
-.login-button {
-  margin-top: 10px;
-  width: 300px;
-  min-height: 50px;
-  background-color: rgb(238, 238, 178);
-  color: black;
-  font-weight: bold;
-  border: none;
-  transition: background-color 0.2s, box-shadow 0.2s;
-}
-
-.login-button:hover {
-  background-color: rgb(238, 238, 178);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .bold-text {
@@ -588,18 +662,65 @@ export default {
   background-image: url(src/assets/user-image.jpg);
 }
 
-/* Novi CSS za Packages section */
-.packages {
-  background-color: rgb(238, 238, 238);
-  padding: 50px 0;
+.hotel-room-container {
+  width: 97%;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.room-image-container {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
   text-align: center;
 }
 
-.packages-heading {
-  font-size: 36px;
-  font-weight: bold;
+.room-image {
+  width: 150%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.service-container {
+  width: 97%;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.service-icons {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
-  color: rgb(183, 71, 71);
+}
+
+.service-option i {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .packages-description {
@@ -608,16 +729,23 @@ export default {
 }
 
 .package-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 20px;
+  width: 300px;
+  height: 350px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 20px 0;
+  text-align: center;
+  display: flex; /* Dodajte ovo svojstvo */
+  flex-direction: column; /* Dodajte ovo svojstvo */
+  align-items: center; /* Dodajte ovo svojstvo */
 }
 
 .package-image {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
+  width: 100%; /* Set a fixed width for the images */
+  height: 150px; /* Set a fixed height for the images */
+  object-fit: cover; /* Maintain aspect ratio while covering the container */
   border-radius: 10px;
   margin-bottom: 10px;
 }
@@ -625,27 +753,76 @@ export default {
 .package-rating {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.package-rating i {
+  color: #ffc107; /* Boja ocjene */
+  margin-right: 5px;
+}
+
+.package-rating-text {
+  margin: 0; /* Remove margin from <p> element */
 }
 
 .package-name {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px; /* Smanjite ovu marginu */
+  padding-top: 10px; /* Dodajte ovu marginu */
+  color: black;
 }
 
 .book-now-button {
-  background-color: rgb(183, 71, 71);
-  color: white;
+  background-color: rgb(238, 238, 178);
+  color: black;
   font-weight: bold;
   padding: 10px 20px;
-  border: none;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  order: none;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .book-now-button:hover {
-  background-color: rgb(163, 51, 51);
+  background-color: rgb(238, 238, 178);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.features-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feature-box {
+  background-color: rgb(30, 30, 30);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin: 20px auto;
+  max-width: 290px;
+  height: 150px;
+}
+
+.feature-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.check-out-button {
+  background-color: rgb(238, 238, 178);
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.check-out-button:hover {
+  background-color: rgb(238, 238, 178);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 </style>
