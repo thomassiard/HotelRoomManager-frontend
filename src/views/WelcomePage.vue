@@ -4,15 +4,29 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark-transparent py-3">
       <div class="container-fluid">
         <div class="user-image-navbar"></div>
-        <router-link to="/profile" class="navbar-brand">
+        <router-link
+          v-if="userRole === 'Admin'"
+          to="/admin"
+          class="navbar-brand"
+        >
+          <span class="username">Admin</span>
+        </router-link>
+        <router-link v-else to="/profile" class="navbar-brand">
           <span class="username">Guest</span>
         </router-link>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <router-link to="/welcomepage" class="nav-link ml-3 text-white"
+            <router-link to="/welcomepage" class="nav-link ml-3 text-red"
               >HOME</router-link
             >
           </li>
+          <router-link
+            v-if="userRole === 'Admin'"
+            to="/admin"
+            class="nav-link ml-3 text-red"
+          >
+            ADMIN
+          </router-link>
           <li class="nav-item">
             <router-link to="/rooms" class="nav-link ml-3 text-white"
               >ROOMS</router-link
@@ -300,14 +314,31 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Home",
   data() {
     return {
       showScrollButton: true,
+      userRole: "Guest", // Default value for user role
     };
   },
   methods: {
+    async checkUserRole() {
+      try {
+        const response = await axios.get("/api/auth/user");
+        const user = response.data;
+
+        if (user.email === "admin@gmail.com" && user.role === "admin") {
+          this.userRole = "Admin";
+        } else {
+          this.userRole = "Guest";
+        }
+      } catch (error) {
+        console.error("Error checking user role:", error);
+      }
+    },
     scrollToContent() {
       this.showScrollButton = true;
       const contentSection = this.$refs.contentSection;
@@ -321,6 +352,9 @@ export default {
     logout() {
       this.$router.push("/");
     },
+  },
+  mounted() {
+    this.checkUserRole();
   },
 };
 </script>
@@ -338,6 +372,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.text-red {
+  color: rgb(183, 71, 71);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .logout-link {

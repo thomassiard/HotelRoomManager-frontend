@@ -4,17 +4,20 @@
     <div class="content">
       <div class="box">
         <h2 class="title">Your new password has been generated:</h2>
-        <div class="check-mark">{{ $route.params.newPassword }}</div>
+        <p class="check-mark">{{ newPassword }}</p>
         <button class="return-button" @click="returnToLogin">Login</button>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "ForgotPasswordSent",
-  props: ["newPassword"],
+  data() {
+    return {
+      newPassword: this.$route.query.newPassword,
+    };
+  },
   methods: {
     returnToLogin() {
       this.$router.push({ name: "Login" });

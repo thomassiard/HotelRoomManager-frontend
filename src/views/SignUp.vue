@@ -41,12 +41,19 @@
             type="text"
             id="fullName"
             v-model="fullName"
+            ref="fullNameInput"
             class="form-control"
           />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" v-model="email" class="form-control" />
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            ref="emailInput"
+            class="form-control"
+          />
         </div>
         <div class="form-group">
           <label for="phoneNumber">Phone Number</label>
@@ -54,6 +61,7 @@
             type="text"
             id="phoneNumber"
             v-model="phoneNumber"
+            ref="phoneNumberInput"
             class="form-control"
           />
         </div>
@@ -65,6 +73,7 @@
               :type="showPassword ? 'text' : 'password'"
               id="password"
               v-model="password"
+              ref="passwordInput"
               class="form-control"
             />
             <span class="password-toggle" @click="togglePasswordVisibility">
@@ -79,6 +88,7 @@
               :type="showConfirmPassword ? 'text' : 'password'"
               id="confirmPassword"
               v-model="confirmPassword"
+              ref="confirmPasswordInput"
               class="form-control"
             />
             <span class="password-toggle" @click="toggleConfirmVisibility">
@@ -115,6 +125,18 @@ export default {
   },
   methods: {
     async submitForm() {
+      // Provjera za svako polje
+      if (
+        !this.fullName ||
+        !this.email ||
+        !this.phoneNumber ||
+        !this.password ||
+        !this.confirmPassword
+      ) {
+        console.error("Please fill in all fields.");
+        return;
+      }
+
       try {
         const response = await axios.post("/api/auth/register", {
           fullName: this.fullName,

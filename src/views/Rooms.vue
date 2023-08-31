@@ -14,7 +14,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link to="/rooms" class="nav-link ml-3 text-white"
+            <router-link to="/rooms" class="nav-link ml-3 text-red"
               >ROOMS</router-link
             >
           </li>
@@ -98,6 +98,12 @@ export default {
 </script>
 
 <style scoped>
+.text-red {
+  color: rgb(183, 71, 71);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
 .nav-link {
   font-weight: bold;
 }

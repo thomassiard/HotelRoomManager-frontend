@@ -29,7 +29,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link to="/about" class="nav-link ml-3 text-white"
+            <router-link to="/about" class="nav-link ml-3 text-red"
               >ABOUT</router-link
             >
           </li>
@@ -118,6 +118,12 @@ export default {
 </script>
 
 <style scoped>
+.text-red {
+  color: rgb(183, 71, 71);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
 .nav-link {
   font-weight: bold;
 }

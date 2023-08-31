@@ -37,7 +37,9 @@
           <input type="email" id="email" v-model="email" class="form-control" />
         </div>
         <div class="button-container text-center bold-text">
-          <button class="login-button" type="submit">Send</button>
+          <button class="login-button" type="submit" :disabled="!isValidEmail">
+            Send
+          </button>
         </div>
         <div v-if="newPassword" class="new-password">
           Your new password: {{ newPassword }}
@@ -57,8 +59,17 @@ export default {
       newPassword: "",
     };
   },
+  computed: {
+    isValidEmail() {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+    },
+  },
   methods: {
     async submitForm() {
+      if (!this.isValidEmail) {
+        console.error("Invalid email format.");
+        return;
+      }
       try {
         this.newPassword = Math.random().toString(36).slice(-8);
         console.log("Password reset request sent for:", this.email);
@@ -66,7 +77,7 @@ export default {
 
         this.$router.push({
           name: "ForgotPasswordSent",
-          params: { newPassword: this.newPassword },
+          query: { newPassword: this.newPassword },
         });
       } catch (error) {
         console.error("Password reset error:", error);

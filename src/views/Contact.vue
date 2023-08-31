@@ -34,7 +34,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link to="/contact" class="nav-link ml-3 text-white"
+            <router-link to="/contact" class="nav-link ml-3 text-red"
               >CONTACT</router-link
             >
           </li>
@@ -57,7 +57,7 @@
           <div class="col-md-6">
             <div class="contact-form">
               <h1 class="display-4 text-center">Contact Us</h1>
-              <form>
+              <form @submit.prevent="sendEmail">
                 <div class="form-group">
                   <label for="email">Email:</label>
                   <input
@@ -65,6 +65,7 @@
                     id="email"
                     class="form-control"
                     placeholder="Enter your email here..."
+                    v-model="email"
                   />
                 </div>
                 <div class="form-group">
@@ -75,6 +76,7 @@
                     rows="5"
                     style="resize: none; max-height: 200px"
                     placeholder="Enter your message here..."
+                    v-model="message"
                   ></textarea>
                 </div>
                 <button class="submit-button" type="submit">Submit</button>
@@ -115,13 +117,18 @@ export default {
     };
   },
   methods: {
-    async submitForm() {
+    async sendEmail() {
       try {
+        await axios.post("/send-email", {
+          email: this.email,
+          message: this.message,
+        });
+
         this.$router.push({
           name: "ContactSent",
         });
       } catch (error) {
-        console.error("Password reset error:", error);
+        console.error("Error sending e-mail:", error);
       }
     },
     logout() {
@@ -132,6 +139,12 @@ export default {
 </script>
 
 <style scoped>
+.text-red {
+  color: rgb(183, 71, 71);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
 .nav-link {
   font-weight: bold;
 }

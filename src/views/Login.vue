@@ -79,6 +79,12 @@ export default {
   },
   methods: {
     async submitForm() {
+      // Provjerite je li email i password unesen
+      if (!this.email || !this.password) {
+        console.error("Please fill in both email and password.");
+        return;
+      }
+
       try {
         const response = await axios.post("/api/auth/login", {
           email: this.email,
@@ -89,7 +95,16 @@ export default {
 
         if (response.data.token) {
           console.log("User logged in successfully");
-          this.handleSuccessfulLogin();
+
+          // Provjerite je li korisnik admin
+          if (
+            this.email === "admin@gmail.com" &&
+            this.password === "glavniadmin"
+          ) {
+            this.handleSuccessfulAdminLogin();
+          } else {
+            this.handleSuccessfulLogin();
+          }
         } else {
           console.log("Invalid credentials");
           this.handleUnsuccessfulLogin();
@@ -106,9 +121,18 @@ export default {
       alert("Successfully logged in!");
       this.$router.push("/welcomepage");
     },
+    handleSuccessfulAdminLogin() {
+      this.showWrongPassword = false;
+      alert("Successfully logged in as admin!");
+      this.$router.push("/welcomepage");
+
+      // Ažuriranje stanja korisničke uloge i korisničkog imena
+      this.$store.commit("updateUserRole", "admin");
+      this.$store.commit("updateUsername", "Admin");
+    },
     handleUnsuccessfulLogin() {
       this.showWrongPassword = false;
-      alert("Wrong Password!");
+      alert("Invalid credentials. Please check your email and password.");
       this.$router.push("/login");
     },
   },
