@@ -21,7 +21,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link to="/adminpanel" class="nav-link ml-3 text-red"
+            <router-link to="/admin" class="nav-link ml-3 text-red"
               >ADMIN</router-link
             >
           </li>

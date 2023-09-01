@@ -63,6 +63,7 @@
                   <input
                     type="email"
                     id="email"
+                    name="email_id"
                     class="form-control"
                     placeholder="Enter your email here..."
                     v-model="email"
@@ -72,6 +73,7 @@
                   <label for="message">Message:</label>
                   <textarea
                     id="message"
+                    name="message"
                     class="form-control"
                     rows="5"
                     style="resize: none; max-height: 200px"
@@ -108,6 +110,7 @@
 
 <script>
 import axios from "axios";
+import emailjs from "emailjs-com"; // Uvoz EmailJS biblioteke
 
 export default {
   data() {
@@ -119,10 +122,22 @@ export default {
   methods: {
     async sendEmail() {
       try {
-        await axios.post("/send-email", {
-          email: this.email,
-          message: this.message,
-        });
+        // Konfigurirajte EmailJS s vašim podacima
+        emailjs.init("S0AiR8Z6MtQGCulbj"); // Zamijenite "your_user_id" sa svojim korisničkim ID-om
+
+        const templateParams = {
+          from_name: "Guest", // Ovdje postavite ime korisnika ili "Guest" prema vašem zahtjevu
+          to_name: "HotelRoomManagerService", // Ovdje postavite vaše ime ili ime primaoca prema vašem zahtjevu
+          email_id: this.email, // Ovo je e-mail adresa korisnika koju ste unijeli u formi
+          message: this.message, // Ovo je poruka koju je korisnik unio u formi
+        };
+
+        await emailjs.send(
+          "service_oecg7ar", // Zamijenite "your_service_id" sa svojim servisnim ID-om
+          "template_6qvvocs", // Zamijenite s vašim template ID-om
+          templateParams,
+          "S0AiR8Z6MtQGCulbj"
+        );
 
         this.$router.push({
           name: "ContactSent",
