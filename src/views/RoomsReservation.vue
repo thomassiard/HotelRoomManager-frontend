@@ -112,7 +112,6 @@
         </div>
       </div>
     </div>
-
     <!-- Red strip at the bottom -->
     <div class="red-strip bottom"></div>
   </div>
@@ -175,6 +174,9 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.contact-form h1 {
+  margin-top: -80px;
+}
 .contact-paragraph {
   font-size: 1.15rem;
 }

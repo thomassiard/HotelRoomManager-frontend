@@ -3,64 +3,62 @@
     <!-- Red strip at the top -->
     <div class="red-strip top"></div>
 
-    <!-- Profile Header -->
-    <div class="profile-header">
-      <h1 class="display-4 text-center">PROFILE</h1>
-      <p class="text-center">
-        Here you can view and update your profile information.
-      </p>
-    </div>
+    <router-link to="/welcomepage" class="return-button">
+      <i class="fa fa-arrow-left"></i> Return
+    </router-link>
 
+    <!-- Profile Container -->
+    <div class="profile-container">
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <h1 class="display-4 text-center">PROFILE</h1>
+        <p class="text-center">Here you can view your profile information.</p>
+      </div>
+      <!-- Profile Picture -->
+      <div class="profile-image">
+        <!-- Display the user's profile picture here -->
+        <img
+          src="src/assets/user-image.jpg"
+          alt="Profile Picture"
+          class="image"
+        />
+      </div>
+
+      <!-- Profile Form -->
+      <div class="profile-form">
+        <form>
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              class="form-control"
+              v-model="user.fullName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              v-model="user.email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              class="form-control"
+              v-model="user.phoneNumber"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
     <!-- Red strip at the bottom -->
     <div class="red-strip bottom"></div>
-
-    <!-- Profile Picture -->
-    <div class="profile-image">
-      <!-- Display the user's profile picture here -->
-      <img :src="profileImageUrl" alt="Profile Picture" class="image" />
-      <!-- Input field to change the profile picture -->
-      <input
-        type="file"
-        accept=".jpg, .jpeg, .png"
-        @change="uploadProfilePicture"
-      />
-    </div>
-
-    <!-- Profile Form -->
-    <div class="profile-form">
-      <form>
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input
-            type="text"
-            id="fullName"
-            class="form-control"
-            :value="fullName"
-            readonly
-          />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            :value="email"
-            readonly
-          />
-        </div>
-        <div class="form-group">
-          <label for="phoneNumber">Phone Number</label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            class="form-control"
-            :value="phoneNumber"
-            readonly
-          />
-        </div>
-      </form>
-    </div>
   </div>
 </template>
 
@@ -70,18 +68,35 @@ import axios from "axios";
 export default {
   data() {
     return {
-      profileImageUrl: "src/assets/default-profile-picture.jpg",
-      fullName: "John Doe",
-      email: "johndoe@example.com",
-      phoneNumber: "123-456-7890",
+      user: {
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+      },
     };
   },
   methods: {
-    uploadProfilePicture(event) {
-      const file = event.target.files[0];
-      // Perform upload logic and update profileImageUrl accordingly
-    },
+    // async fetchUserProfile() {
+    //   try {
+    //     // Promijenite URL rute kako biste poslali email umjesto ID-ja
+    //     const response = await axios.get(`/api/profile/${this.user.email}`);
+    //     const userData = response.data;
+    //     // Postavite dobivene podatke u varijable
+    //     this.user.fullName = userData.fullName;
+    //     this.user.email = userData.email;
+    //     this.user.phoneNumber = userData.phoneNumber;
+    //   } catch (error) {
+    //     console.error("Error fetching user profile:", error);
+    //   }
+    // },
   },
+  // mounted() {
+  //   // Dohvatite podatke o prijavljenom korisniku iz store-a ili props-a
+  //   this.user = this.$store.state.user;
+
+  //   // Pozovite funkciju za dohvaćanje profila
+  //   this.fetchUserProfile();
+  // },
 };
 </script>
 
@@ -101,17 +116,26 @@ export default {
   width: 100%;
 }
 
-.profile-image {
-  width: 100px;
-  height: 100px;
-  background-color: #ddd;
-  border-radius: 50%;
-  margin: 0 auto 10px;
-  background-size: cover;
-  background-position: center;
+.return-button {
+  position: fixed;
+  top: 12.5%;
+  left: 36.5%;
+  background-color: rgb(238, 238, 178);
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  z-index: 1;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-.profile-header {
+.return-button:hover {
+  background-color: rgb(238, 238, 178);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.profile-container {
   text-align: center;
   display: inline-block;
   margin-top: 10rem;
@@ -119,9 +143,13 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   background-color: #f8f9fa;
-  padding: 1rem;
+  padding: 4rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  text-align: left;
 }
 
 .profile-image {

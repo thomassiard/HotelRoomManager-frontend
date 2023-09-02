@@ -130,7 +130,7 @@
         <div class="profile-image review5-image"></div>
         <div class="username black-text">David Kovač</div>
         <div class="rating">
-          <span class="stars">★★★★★</span>
+          <span class="stars">★★★★</span>
         </div>
         <p class="review-description">
           Amazing stay! The room was spotless and cozy, and the staff was super
@@ -296,7 +296,6 @@ export default {
 .review-description {
   font-size: 1.15rem;
 }
-
 .user-image-navbar {
   width: 2%;
   height: 40px;

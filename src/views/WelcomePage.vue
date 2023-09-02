@@ -70,7 +70,7 @@
       <div class="text-container">
         <h1 class="display-3 welcome-heading text-cool-font text-center">
           <span class="d-md-block d-sm-none">&nbsp;</span>
-          THE MOST LUXURIOUS HOTEL ROOMS IN TOWN.
+          THE MOST LUXURIOUS HOTEL ROOMS IN TOWN
         </h1>
         <p class="lead book-stay-text text-cool-font text-center">
           Experience unparalleled luxury and comfort at our exquisite hotel.
@@ -86,41 +86,48 @@
           Plan your dream stay today. Explore our room options and book your
           perfect retreat for an extraordinary experience.
         </p>
-        <form>
+        <form @submit.prevent="searchAvailability">
           <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="checkIn" class="text-white">Check-in</label>
-              <input type="date" id="checkIn" class="form-control" />
-            </div>
-            <div class="form-group col-md-3">
-              <label for="checkOut" class="text-white">Check-out</label>
-              <input type="date" id="checkOut" class="form-control" />
-            </div>
-            <div class="form-group col-md-2">
-              <label for="adults" class="text-white">Adults</label>
+            <!-- Check-in -->
+            <div class="form-group col-md-6 mx-auto">
+              <label for="checkIn" class="text-white">Check-in Date</label>
               <input
-                type="number"
-                id="adults"
+                type="date"
+                id="checkIn"
                 class="form-control"
-                min="0"
-                value="0"
+                v-model="checkInDate"
+                required
               />
             </div>
-            <div class="form-group col-md-2">
-              <label for="children" class="text-white">Children</label>
+            <!-- Check-out -->
+            <div class="form-group col-md-6 mx-auto">
+              <label for="checkOut" class="text-white">Check-out Date</label>
               <input
-                type="number"
-                id="children"
+                type="date"
+                id="checkOut"
                 class="form-control"
-                min="0"
-                value="0"
+                v-model="checkOutDate"
+                required
               />
             </div>
-            <div class="form-group col-md-2 text-center">
+            <!-- Room Type -->
+            <div class="form-group col-md-6 mx-auto">
+              <label for="roomType" class="text-white">Room Type</label>
+              <select id="roomType" class="form-control" v-model="roomType">
+                <option value="single">Single Room</option>
+                <option value="double">Double Room</option>
+                <option value="quad">Quad Room</option>
+                <option value="vip">VIP Room</option>
+              </select>
+            </div>
+            <!-- Search Button -->
+            <div class="form-group col-md-1 text-center">
               <button class="btn btn-dark btn-lg" type="submit">Search</button>
             </div>
           </div>
         </form>
+        <!-- Prikaz poruke dostupnosti -->
+        <p class="availability-message">{{ availabilityMessage }}</p>
       </div>
     </div>
     <!-- Scroll button -->
@@ -411,7 +418,11 @@ export default {
   data() {
     return {
       showScrollButton: true,
-      userRole: "Guest", // Default value for user role
+      userRole: "Guest",
+      checkInDate: null,
+      checkOutDate: null,
+      roomType: "single", // Podesite na početni tip sobe
+      availabilityMessage: "",
     };
   },
   methods: {
@@ -420,6 +431,51 @@ export default {
       const contentSection = this.$refs.contentSection;
       if (contentSection) {
         contentSection.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    searchAvailability() {
+      // Implementirajte logiku za provjeru dostupnosti soba
+      // Ovde trebate upitati API ili koristiti odgovarajuće podatke da biste saznali dostupnost
+      // Ovde koristimo lažne podatke za demonstraciju
+
+      const isAvailable = this.isRoomAvailable(
+        this.checkInDate,
+        this.checkOutDate,
+        this.roomType
+      );
+
+      if (isAvailable) {
+        this.availabilityMessage = "Room is available!";
+        // Ovdje možete preusmjeriti korisnika na /rooms ako su sobe dostupne
+        this.$router.push("/rooms");
+      } else {
+        this.availabilityMessage = "All rooms are reserved!";
+        // Ovdje možete resetirati formu
+        this.checkInDate = null;
+        this.checkOutDate = null;
+        this.roomType = "single"; // Resetirajte tip sobe na početnu vrednost
+      }
+    },
+
+    isRoomAvailable(checkInDate, checkOutDate, roomType) {
+      // Simulacija provjere dostupnosti soba
+      // Ovdje implementirajte svoju stvarnu logiku za provjeru dostupnosti soba
+      // U ovom primeru, koristimo hardkodirane vrednosti
+
+      // Pretvaranje datuma iz stringa u objekte tipa Date
+      const checkIn = new Date(checkInDate);
+      const checkOut = new Date(checkOutDate);
+
+      // Ovdje biste trebali proveriti stvarnu dostupnost soba
+      // Prikazujemo lažne vrednosti za demonstraciju
+      if (
+        roomType === "single" &&
+        checkIn >= new Date() &&
+        checkOut >= new Date()
+      ) {
+        return true; // Soba je dostupna
+      } else {
+        return false; // Soba nije dostupna
       }
     },
     async checkUserRole() {
@@ -503,6 +559,10 @@ export default {
   transform: translate(-50%, -50%);
 }
 
+.form-group {
+  margin-top: 20px;
+}
+
 .text-container {
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
@@ -543,13 +603,6 @@ export default {
   z-index: 1;
 }
 
-.profile-image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
 .username {
   color: white;
   font-weight: bold;
@@ -570,8 +623,9 @@ export default {
 }
 
 .btn-dark {
-  margin-top: 10px;
-  width: 300px;
+  margin-top: 20px;
+  margin-left: 11.5rem;
+  width: 200px;
   min-height: 50px;
   background-color: rgb(238, 238, 178);
   color: black;
@@ -813,6 +867,7 @@ export default {
 }
 
 .check-out-button {
+  margin-top: 10px;
   background-color: rgb(238, 238, 178);
   color: black;
   font-weight: bold;
@@ -824,5 +879,12 @@ export default {
 .check-out-button:hover {
   background-color: rgb(238, 238, 178);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.availability-message {
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
 }
 </style>

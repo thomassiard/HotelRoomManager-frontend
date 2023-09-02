@@ -128,7 +128,7 @@
     <div class="red-strip"></div>
 
     <!-- Naslov galerije -->
-    <div class="rooms-header">
+    <div class="rooms-header" id="rooms-section">
       <h1 class="display-4 text-center">ROOMS</h1>
       <p class="text-center">Explore our luxurious room options.</p>
     </div>
@@ -155,7 +155,7 @@
             modern design. Enjoy a peaceful ambiance and all the necessary
             amenities for a relaxing stay.
           </p>
-          <p class="room-price">50 Euro / night</p>
+          <p class="room-price">50 € / night</p>
           <router-link to="/roomsreservation">
             <button class="book-now-button">Book Now</button>
           </router-link>
@@ -184,7 +184,7 @@
             Spacious and elegantly decorated, this room creates a pleasant
             atmosphere for your vacation.
           </p>
-          <p class="room-price">100 Euro / night</p>
+          <p class="room-price">100 € / night</p>
           <router-link to="/roomsreservation">
             <button class="book-now-button">Book Now</button>
           </router-link>
@@ -212,7 +212,7 @@
             <br />
             Here, you'll find plenty of space for all members of your group.
           </p>
-          <p class="room-price">150 Euro / night</p>
+          <p class="room-price">150 € / night</p>
           <router-link to="/roomsreservation">
             <button class="book-now-button">Book Now</button>
           </router-link>
@@ -242,7 +242,7 @@
             Enjoy special privileges and a sense of luxury during your stay in
             the VIP room.
           </p>
-          <p class="room-price">200 Euro / night</p>
+          <p class="room-price">200 € / night</p>
           <router-link to="/roomsreservation">
             <button class="book-now-button">Book Now</button>
           </router-link>

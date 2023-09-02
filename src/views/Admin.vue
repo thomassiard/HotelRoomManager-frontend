@@ -113,23 +113,29 @@
     <!-- Forma za unos Check-in Number-a -->
     <div class="bg-light py-5 box-container">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 class="display-5">CHECK-IN</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-5 text-center">
+            <h2 class="display-6">GUEST INFORMATION</h2>
             <form>
-              <!-- Dodajte klasu "form-group" oko svake form-grupe kako biste primijenili isti stil -->
               <div class="form-group">
-                <label for="checkinNumber">Check-in Number</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="checkinNumber"
-                  v-model="checkinNumber"
-                  placeholder="Enter Check-in Number"
-                />
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control room-number-input"
+                    id="checkinNumber"
+                    v-model="checkinNumber"
+                    placeholder="Enter Room Number..."
+                    aria-describedby="roomNumberText"
+                  />
+                </div>
               </div>
-              <div class="form-group">
-                <button type="button" class="btn btn-primary" @click="checkIn">
+
+              <div class="form-group text-center mb-4">
+                <button
+                  type="button"
+                  class="btn btn-primary room-number-button"
+                  @click="checkIn"
+                >
                   Check
                 </button>
               </div>
@@ -143,10 +149,10 @@
     <div v-if="reservation" class="bg-light py-5 box-container">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <h2 class="display-5">GUEST INFORMATION</h2>
+          <div class="col-md-12 text-center">
+            <!-- Dodana klasa "text-center" ovdje -->
             <div class="form-group">
-              <p>Check-in Number: {{ checkinNumber }}</p>
+              <p>Room Number: {{ checkinNumber }}</p>
             </div>
             <div class="form-group">
               <p>Full Name: {{ reservation.fullName }}</p>
@@ -178,8 +184,6 @@
             <div class="form-group">
               <p>Special Requests: {{ reservation.specialRequests }}</p>
             </div>
-
-            <!-- Dodajte ostale form-grupe za ostale podatke o rezervaciji -->
           </div>
         </div>
       </div>
@@ -355,5 +359,28 @@ export default {
 .username {
   color: white;
   font-weight: bold;
+}
+
+.room-number-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgb(238, 238, 178);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.room-number-button:hover {
+  background-color: rgb(238, 238, 178);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.room-number-input {
+  max-width: 300px;
+  margin: 0 auto; /* Centriraj ulazno polje */
 }
 </style>
