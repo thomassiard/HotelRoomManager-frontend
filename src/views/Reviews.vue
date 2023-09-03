@@ -1,51 +1,6 @@
 <template>
   <div class="reviews">
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
-      <div class="container-fluid">
-        <div class="user-image-navbar"></div>
-        <router-link to="/profile" class="navbar-brand">
-          <span class="user">Guest</span>
-        </router-link>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <router-link to="/welcomepage" class="nav-link ml-3 text-white"
-              >HOME</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/rooms" class="nav-link ml-3 text-white"
-              >ROOMS</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/gallery" class="nav-link ml-3 text-white"
-              >GALLERY</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/reviews" class="nav-link ml-3 text-red"
-              >REVIEWS</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link ml-3 text-white"
-              >ABOUT</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/contact" class="nav-link ml-3 text-white"
-              >CONTACT</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <a @click="logout" class="nav-link ml-3 text-black logout-link"
-              >LOG OUT</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navigation />
 
     <!-- Crvena traka ispod navigation bara -->
     <div class="red-strip top"></div>
@@ -161,12 +116,16 @@
 </template>
 
 <script>
-import axios from "axios";
+import Navigation from "@/components/navigation.vue";
 
 export default {
   data() {},
+  components: {
+    Navigation,
+  },
   methods: {
     logout() {
+      localStorage.removeItem("token");
       this.$router.push("/");
     },
   },

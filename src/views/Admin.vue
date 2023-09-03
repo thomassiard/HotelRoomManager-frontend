@@ -1,56 +1,6 @@
 <template>
   <div class="gallery">
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
-      <div class="container-fluid">
-        <div class="user-image-navbar"></div>
-        <router-link to="/profile" class="navbar-brand">
-          <span class="username">Admin</span>
-        </router-link>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <router-link to="/welcomepage" class="nav-link ml-3 text-white"
-              >HOME</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/welcomepage" class="nav-link ml-3 text-red"
-              >ADMIN</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/rooms" class="nav-link ml-3 text-white"
-              >ROOMS</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/gallery" class="nav-link ml-3 text-white"
-              >GALLERY</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/reviews" class="nav-link ml-3 text-white"
-              >REVIEWS</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link ml-3 text-white"
-              >ABOUT</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/contact" class="nav-link ml-3 text-white"
-              >CONTACT</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <a @click="logout" class="nav-link ml-3 text-black logout-link"
-              >LOG OUT</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navigation />
 
     <!-- Crvena traka ispod navigation bara -->
     <div class="red-strip top"></div>
@@ -126,6 +76,7 @@
                     v-model="checkinNumber"
                     placeholder="Enter Room Number..."
                     aria-describedby="roomNumberText"
+                    required
                   />
                 </div>
               </div>
@@ -151,9 +102,6 @@
         <div class="row">
           <div class="col-md-12 text-center">
             <!-- Dodana klasa "text-center" ovdje -->
-            <div class="form-group">
-              <p>Room Number: {{ checkinNumber }}</p>
-            </div>
             <div class="form-group">
               <p>Full Name: {{ reservation.fullName }}</p>
             </div>
@@ -182,7 +130,7 @@
               <p>Check-out Date: {{ reservation.checkOutDate }}</p>
             </div>
             <div class="form-group">
-              <p>Special Requests: {{ reservation.specialRequests }}</p>
+              <p>Type of payment: {{ reservation.typeOfPayment }}</p>
             </div>
           </div>
         </div>
@@ -201,6 +149,29 @@
               The heart of reservation management, where administrators oversee
               and coordinate room bookings with precision and ease.
             </p>
+            <div class="container mt-4">
+              <h2>Room List</h2>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Room Number</th>
+                    <th>Room Type</th>
+                    <th>Is Occupied</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="room in roomsWithOccupancy"
+                    :key="room._id.$oid"
+                    :class="{ 'table-danger': room.isOccupied }"
+                  >
+                    <td>{{ room.room_number }}</td>
+                    <td>{{ room.room_type }}</td>
+                    <td>{{ room.isOccupied ? "Occupied" : "Available" }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -213,25 +184,37 @@
 
 <script>
 import axios from "axios";
+import Navigation from "@/components/navigation.vue";
 
 export default {
   data() {
     return {
       checkinNumber: "",
       reservation: null,
+      roomsWithOccupancy: [],
     };
   },
+  components: {
+    Navigation,
+  },
+  mounted() {
+    this.fetchData();
+  },
   methods: {
+    async fetchData() {
+      try {
+        // Fetch data from the /api/all-rooms route using Axios
+        const response = await axios.get("/api/reservation/all-rooms");
+        this.roomsWithOccupancy = response.data.roomsWithOccupancy;
+      } catch (error) {
+        console.error("Error fetching room data:", error);
+      }
+    },
     async checkIn() {
       // Ovdje trebate implementirati logiku za dohvaćanje podataka na temelju Check-in Number-a
+      this.reservation = null;
+      let reservation = null;
       try {
-        // Ovdje pozovite Axios ili drugi način za dohvaćanje podataka iz baze
-        // i spremite ih u varijablu reservation
-        // Na primjer:
-        // const response = await axios.get(`/api/reservations/${this.checkinNumber}`);
-        // this.reservation = response.data;
-
-        // Dummy podaci za testiranje
         this.reservation = {
           fullName: "",
           phoneNumber: "",
@@ -242,10 +225,14 @@ export default {
           kids: "",
           checkInDate: "",
           checkOutDate: "",
-          specialRequests: "",
+          typeOfPayment: "",
         };
+
+        reservation = await axios.get(`api/room/${this.checkinNumber}`);
+        console.log("reserve", reservation);
+        this.reservation = reservation.data;
       } catch (error) {
-        console.error(error);
+        console.log(error);
         this.reservation = null;
       }
     },

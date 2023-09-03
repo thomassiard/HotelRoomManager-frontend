@@ -91,11 +91,11 @@ export default {
           password: this.password,
         });
 
-        console.log(response.data);
+        console.log(response.data.token);
 
         if (response.data.token) {
-          console.log("User logged in successfully");
-
+          const token = response.data.token;
+          localStorage.setItem("token", token);
           // Provjerite je li korisnik admin
           if (
             this.email === "admin@gmail.com" &&
@@ -118,12 +118,10 @@ export default {
     },
     handleSuccessfulLogin() {
       this.showWrongPassword = false;
-      alert("Successfully logged in!");
       this.$router.push("/welcomepage");
     },
     handleSuccessfulAdminLogin() {
       this.showWrongPassword = false;
-      alert("Successfully logged in as admin!");
       this.$router.push("/welcomepage");
 
       // Ažuriranje stanja korisničke uloge i korisničkog imena

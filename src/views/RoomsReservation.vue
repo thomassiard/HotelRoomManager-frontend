@@ -16,32 +16,34 @@
               <h1 class="display-4 text-center">ROOM RESERVATION</h1>
               <form @submit.prevent="sendReservation">
                 <div class="form-group">
-                  <label for="fullName">Full Name:</label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    class="form-control"
-                    v-model="fullName"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="phoneNumber">Phone Number:</label>
-                  <input
-                    type="text"
-                    id="phoneNumber"
-                    class="form-control"
-                    v-model="phoneNumber"
-                    required
-                  />
-                </div>
-                <div class="form-group">
                   <label for="email">Email:</label>
                   <input
                     type="email"
                     id="email"
                     class="form-control"
                     v-model="email"
+                    required
+                  />
+                </div>
+                <!-- Check-in -->
+                <div class="form-group">
+                  <label for="checkIn">Check-in Date</label>
+                  <input
+                    type="date"
+                    id="checkIn"
+                    class="form-control"
+                    v-model="checkInDate"
+                    required
+                  />
+                </div>
+                <!-- Check-out -->
+                <div class="form-group">
+                  <label for="checkOut">Check-out Date</label>
+                  <input
+                    type="date"
+                    id="checkOut"
+                    class="form-control"
+                    v-model="checkOutDate"
                     required
                   />
                 </div>
@@ -87,14 +89,21 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="specialRequests">Special Requests:</label>
-                  <textarea
-                    id="specialRequests"
-                    class="form-control"
-                    rows="5"
-                    style="resize: none; max-height: 200px"
-                    v-model="specialRequests"
-                  ></textarea>
+                  <label for="payment">Type of payment:</label>
+                  <div class="input-group">
+                    <!-- Koristimo input-group za dodavanje ikonice -->
+                    <select
+                      id="payment"
+                      class="form-control"
+                      v-model="payment"
+                      required
+                    >
+                      <option value="Credit Card">Credit Card</option>
+                      <option value="Cash">Cash</option>
+                    </select>
+                    <!-- Dodajte ikonicu za strelicu ovde -->
+                    <i class="fa fa-chevron-down input-icon"></i>
+                  </div>
                 </div>
                 <!-- Centrirani gumb -->
                 <div class="text-center">
@@ -123,13 +132,13 @@ import axios from "axios";
 export default {
   data() {
     return {
-      fullName: "",
-      phoneNumber: "",
       email: "",
+      checkInDate: null,
+      checkOutDate: null,
       adults: "",
       kids: "",
       roomType: "Single Room",
-      specialRequests: "",
+      payment: "Credit Card",
     };
   },
   methods: {
@@ -137,8 +146,18 @@ export default {
       try {
         // Ovde možete poslati rezervaciju na server, ako je potrebno
         // A zatim preusmeriti na odgovarajuću rutu
+        const _data = {
+          email: this.email,
+          check_in: this.checkInDate,
+          check_out: this.checkOutDate,
+          adults: this.adults,
+          kids: this.kids,
+          room_type: this.roomType,
+          type_of_payment: this.payment,
+        };
+        const response = await axios.post("api/reservation", _data);
         this.$router.push({
-          name: "RoomsReservationSent", // Zamijenite sa odgovarajućim nazivom rute
+          name: "RoomsReservationSent",
         });
       } catch (error) {
         console.error("Error sending reservation:", error);

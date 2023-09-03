@@ -123,25 +123,49 @@ const router = createRouter({
   routes,
 });
 
-// import axios from "axios";
+import axios from "axios";
+router.beforeEach(async (to, from, next) => {
+  try {
+    const token = localStorage.getItem("token");
 
-// router.beforeEach(async (to, from, next) => {
-//   try {
-//     // Koristite Axios ili sličnu biblioteku za provjeru autentikacije na Expressu
-//     const response = await axios.get("/api/check-auth");
-//     const isAuthenticated = response.data.isAuthenticated;
+    if (to.meta.needsUser && !token) {
+      // Redirect to login if the route requires authentication but there's no token
+      next("/login");
+    } else if (token) {
+      // If a token is present, fetch user data
+      const response = await axios.get("/api/auth/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-//     if (!isAuthenticated && to.meta.needsUser) {
-//       next("/");
-//     } else if (isAuthenticated && !to.meta.needsUser) {
-//       next("/home");
-//     } else {
-//       next();
-//     }
-//   } catch (error) {
-//     console.error("Error checking authentication:", error);
-//     next("/");
-//   }
-// });
+      const userData = response.data;
+
+      if (to.name === "Admin" && !userData.isAdmin) {
+        // Redirect to unauthorized page for non-admin users
+        next("/welcomepage");
+      }
+
+      console.log(to.name === "Admin", !userData.isAdmin);
+
+      if (to.meta.needsUser && userData) {
+        // Continue to the protected route if the user is authenticated and route requires authentication
+        next();
+      } else if (!to.meta.needsUser && userData) {
+        // Redirect to home or other appropriate route if the user is authenticated but the route doesn't require authentication
+        next("/welcomepage");
+      } else {
+        // Handle other cases if necessary
+        next();
+      }
+    } else {
+      // Continue to the route if it doesn't require authentication and there's no token
+      next();
+    }
+  } catch (error) {
+    console.error("Error checking authentication:", error);
+    next("/login");
+  }
+});
 
 export default router;

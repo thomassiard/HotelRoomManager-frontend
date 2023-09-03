@@ -34,6 +34,7 @@
               id="fullName"
               class="form-control"
               v-model="user.fullName"
+              disabled
             />
           </div>
           <div class="form-group">
@@ -43,6 +44,7 @@
               id="email"
               class="form-control"
               v-model="user.email"
+              disabled
             />
           </div>
           <div class="form-group">
@@ -52,6 +54,7 @@
               id="phoneNumber"
               class="form-control"
               v-model="user.phoneNumber"
+              disabled
             />
           </div>
         </form>
@@ -75,28 +78,36 @@ export default {
       },
     };
   },
-  methods: {
-    // async fetchUserProfile() {
-    //   try {
-    //     // Promijenite URL rute kako biste poslali email umjesto ID-ja
-    //     const response = await axios.get(`/api/profile/${this.user.email}`);
-    //     const userData = response.data;
-    //     // Postavite dobivene podatke u varijable
-    //     this.user.fullName = userData.fullName;
-    //     this.user.email = userData.email;
-    //     this.user.phoneNumber = userData.phoneNumber;
-    //   } catch (error) {
-    //     console.error("Error fetching user profile:", error);
-    //   }
-    // },
+  mounted() {
+    // Pozovite funkciju za dohvaćanje profila
+    this.fetchUserProfile();
   },
-  // mounted() {
-  //   // Dohvatite podatke o prijavljenom korisniku iz store-a ili props-a
-  //   this.user = this.$store.state.user;
+  methods: {
+    async fetchUserProfile() {
+      try {
+        // Promijenite URL rute kako biste poslali email umjesto ID-ja
+        const token = localStorage.getItem("token");
 
-  //   // Pozovite funkciju za dohvaćanje profila
-  //   this.fetchUserProfile();
-  // },
+        if (!token) {
+          console.error("Token not found in localStorage");
+          return;
+        }
+        const response = await axios.get(`/api/auth/user`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const userData = response.data;
+        // Postavite dobivene podatke u varijable
+        this.user.fullName = userData.fullName;
+        this.user.email = userData.email;
+        this.user.phoneNumber = userData.phoneNumber;
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    },
+  },
 };
 </script>
 

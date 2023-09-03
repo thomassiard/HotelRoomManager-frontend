@@ -1,70 +1,6 @@
 <template>
   <div>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark-transparent py-3">
-      <div class="container-fluid">
-        <div class="user-image-navbar"></div>
-        <router-link
-          v-if="userRole === 'Admin'"
-          to="/admin"
-          class="navbar-brand"
-        >
-          <span class="username">Admin</span>
-        </router-link>
-        <router-link v-else to="/profile" class="navbar-brand">
-          <span class="username">Guest</span>
-        </router-link>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <router-link to="/welcomepage" class="nav-link ml-3 text-red"
-              >HOME</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/admin" class="nav-link ml-3 text-red"
-              >ADMIN</router-link
-            >
-          </li>
-          <router-link
-            v-if="userRole === 'Admin'"
-            to="/admin"
-            class="nav-link ml-3 text-red"
-          >
-            ADMIN
-          </router-link>
-          <li class="nav-item">
-            <router-link to="/rooms" class="nav-link ml-3 text-white"
-              >ROOMS</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/gallery" class="nav-link ml-3 text-white"
-              >GALLERY</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/reviews" class="nav-link ml-3 text-white"
-              >REVIEWS</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link ml-3 text-white"
-              >ABOUT</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link to="/contact" class="nav-link ml-3 text-white"
-              >CONTACT</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <a @click="logout" class="nav-link ml-3 text-black logout-link"
-              >LOG OUT</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navigation />
     <!-- Background image and text -->
     <div class="home">
       <div class="text-container">
@@ -411,19 +347,22 @@
 </template>
 
 <script>
+import Navigation from "@/components/navigation.vue";
 import axios from "axios";
 
 export default {
-  name: "Home",
+  name: "WelcomePage",
   data() {
     return {
       showScrollButton: true,
-      userRole: "Guest",
       checkInDate: null,
       checkOutDate: null,
       roomType: "single", // Podesite na početni tip sobe
       availabilityMessage: "",
     };
+  },
+  components: {
+    Navigation,
   },
   methods: {
     scrollToContent() {
@@ -434,10 +373,6 @@ export default {
       }
     },
     searchAvailability() {
-      // Implementirajte logiku za provjeru dostupnosti soba
-      // Ovde trebate upitati API ili koristiti odgovarajuće podatke da biste saznali dostupnost
-      // Ovde koristimo lažne podatke za demonstraciju
-
       const isAvailable = this.isRoomAvailable(
         this.checkInDate,
         this.checkOutDate,
@@ -446,61 +381,26 @@ export default {
 
       if (isAvailable) {
         this.availabilityMessage = "Room is available!";
-        // Ovdje možete preusmjeriti korisnika na /rooms ako su sobe dostupne
+        alert("Room is available!");
         this.$router.push("/rooms");
       } else {
         this.availabilityMessage = "All rooms are reserved!";
-        // Ovdje možete resetirati formu
         this.checkInDate = null;
         this.checkOutDate = null;
-        this.roomType = "single"; // Resetirajte tip sobe na početnu vrednost
+        this.roomType = "single";
       }
     },
-
-    isRoomAvailable(checkInDate, checkOutDate, roomType) {
-      // Simulacija provjere dostupnosti soba
-      // Ovdje implementirajte svoju stvarnu logiku za provjeru dostupnosti soba
-      // U ovom primeru, koristimo hardkodirane vrednosti
-
-      // Pretvaranje datuma iz stringa u objekte tipa Date
+    async isRoomAvailable(checkInDate, checkOutDate, roomType) {
       const checkIn = new Date(checkInDate);
       const checkOut = new Date(checkOutDate);
 
-      // Ovdje biste trebali proveriti stvarnu dostupnost soba
-      // Prikazujemo lažne vrednosti za demonstraciju
-      if (
-        roomType === "single" &&
-        checkIn >= new Date() &&
-        checkOut >= new Date()
-      ) {
-        return true; // Soba je dostupna
-      } else {
-        return false; // Soba nije dostupna
-      }
-    },
-    async checkUserRole() {
-      try {
-        const response = await axios.get("/api/auth/user");
-        const user = response.data;
-
-        if (user.email === "admin@gmail.com" && user.role === "admin") {
-          this.userRole = "Admin";
-        } else {
-          this.userRole = "Guest";
-        }
-      } catch (error) {
-        console.error("Error checking user role:", error);
-      }
+      const response = await axios.get("/api/reservation/available-rooms");
+      const _data = response.data;
+      console.log(_data);
     },
     redirectToRooms() {
       this.$router.push("/rooms");
     },
-    logout() {
-      this.$router.push("/");
-    },
-  },
-  mounted() {
-    this.checkUserRole();
   },
 };
 </script>
