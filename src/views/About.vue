@@ -39,12 +39,12 @@
           <div class="col-md-6">
             <div class="about-images text-right">
               <img
-                src="/@/assets/about.jpg"
+                src="@/assets/about.jpg"
                 alt="About Image 1"
                 class="about-image img-fluid"
               />
               <img
-                src="/@/assets/about2.jpg"
+                src="@/assets/about2.jpg"
                 alt="About Image 2"
                 class="about-image img-fluid mt-4"
               />
