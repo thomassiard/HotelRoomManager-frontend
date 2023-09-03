@@ -93,7 +93,7 @@
           <div class="col-md-4">
             <div class="room-image-container">
               <img
-                src="src/assets/welcomeroom1.jpg"
+                src="@/assets/welcomeroom1.jpg"
                 alt="Image 1"
                 class="img-fluid room-image"
               />
@@ -102,7 +102,7 @@
           <div class="col-md-4">
             <div class="room-image-container">
               <img
-                src="src/assets/welcomeroom2.jpg"
+                src="@/assets/welcomeroom2.jpg"
                 alt="Image 2"
                 class="img-fluid room-image"
               />
@@ -111,7 +111,7 @@
           <div class="col-md-4">
             <div class="room-image-container">
               <img
-                src="src/assets/welcomeroom3.jpg"
+                src="@/assets/welcomeroom3.jpg"
                 alt="Image 3"
                 class="img-fluid room-image"
               />
@@ -200,7 +200,7 @@
               <div class="col-md-3">
                 <div class="package-box">
                   <img
-                    src="src/assets/package1.jpg"
+                    src="@/assets/package1.jpg"
                     alt="Package 1"
                     class="package-image"
                   />
@@ -219,7 +219,7 @@
               <div class="col-md-3">
                 <div class="package-box">
                   <img
-                    src="src/assets/package2.jpg"
+                    src="@/assets/package2.jpg"
                     alt="Package 2"
                     class="package-image"
                   />
@@ -238,7 +238,7 @@
               <div class="col-md-3">
                 <div class="package-box">
                   <img
-                    src="src/assets/package3.jpg"
+                    src="@/assets/package3.jpg"
                     alt="Package 3"
                     class="package-image"
                   />
@@ -257,7 +257,7 @@
               <div class="col-md-3">
                 <div class="package-box">
                   <img
-                    src="src/assets/package4.jpg"
+                    src="@/assets/package4.jpg"
                     alt="Package 4"
                     class="package-image"
                   />
@@ -408,7 +408,7 @@ export default {
 <style scoped>
 .home {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("src/assets/welcomebackground.jpg");
+    url("@/assets/welcomebackground.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -613,7 +613,7 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/user-image.jpg);
+  background-image: url(@/assets/user-image.jpg);
 }
 
 .hotel-room-container {

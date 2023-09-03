@@ -23,7 +23,7 @@
           <div class="col-md-6">
             <div class="admin-pictures-container">
               <img
-                src="src/assets/adminpanel1.jpeg"
+                src="@/assets/adminpanel1.jpeg"
                 alt="Image 1"
                 class="img-fluid admin-pictures-image"
               />
@@ -32,7 +32,7 @@
           <div class="col-md-6">
             <div class="admin-pictures-container">
               <img
-                src="src/assets/adminpanel2.jpg"
+                src="@/assets/adminpanel2.jpg"
                 alt="Image 2"
                 class="img-fluid admin-pictures-image"
               />
@@ -340,7 +340,7 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/user-image.jpg);
+  background-image: url(@/assets/user-image.jpg);
 }
 
 .username {

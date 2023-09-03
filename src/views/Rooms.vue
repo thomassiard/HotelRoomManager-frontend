@@ -74,7 +74,7 @@
 
       <!-- Slika "HOUSE RULES" -->
       <div class="house-image">
-        <img src="src/assets/houserules.jpg" alt="House Rules Image" />
+        <img src="@/assets/houserules.jpg" alt="House Rules Image" />
       </div>
     </div>
 
@@ -90,11 +90,7 @@
     <!-- Prikaži sobe kao reklame -->
     <div class="room-advertisements">
       <div class="room-advertisement">
-        <img
-          src="src/assets/package1.jpg"
-          alt="Single Room"
-          class="room-image"
-        />
+        <img src="@/assets/package1.jpg" alt="Single Room" class="room-image" />
         <div class="room-details">
           <div class="package-rating">
             <i class="fa fa-star"></i>
@@ -117,11 +113,7 @@
       </div>
 
       <div class="room-advertisement">
-        <img
-          src="src/assets/package2.jpg"
-          alt="Single Room"
-          class="room-image"
-        />
+        <img src="@/assets/package2.jpg" alt="Single Room" class="room-image" />
         <div class="room-details">
           <div class="package-rating">
             <i class="fa fa-star"></i>
@@ -146,11 +138,7 @@
       </div>
 
       <div class="room-advertisement">
-        <img
-          src="src/assets/package3.jpg"
-          alt="Single Room"
-          class="room-image"
-        />
+        <img src="@/assets/package3.jpg" alt="Single Room" class="room-image" />
         <div class="room-details">
           <div class="package-rating">
             <i class="fa fa-star"></i>
@@ -174,11 +162,7 @@
       </div>
 
       <div class="room-advertisement">
-        <img
-          src="src/assets/package4.jpg"
-          alt="Single Room"
-          class="room-image"
-        />
+        <img src="@/assets/package4.jpg" alt="Single Room" class="room-image" />
         <div class="room-details">
           <div class="package-rating">
             <i class="fa fa-star"></i>
@@ -436,7 +420,7 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/user-image.jpg);
+  background-image: url(@/assets/user-image.jpg);
 }
 
 .username {

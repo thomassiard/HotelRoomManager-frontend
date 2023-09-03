@@ -25,7 +25,7 @@
     </nav>
 
     <div class="image-container text-center mt-0 mb-10">
-      <img src="../assets/login.jpg" alt="SignUp Image" class="login-image" />
+      <img src="@/assets/login.jpg" alt="SignUp Image" class="login-image" />
     </div>
 
     <div class="form-container">

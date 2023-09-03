@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-6 mb-4">
             <img
-              src="src/assets/home1.jpg"
+              src="@/assets/home1.jpg"
               alt="Home1 slika"
               class="img-fluid rounded-image"
             />
@@ -58,7 +58,7 @@
           </div>
           <div class="col-md-6 mb-4 order-md-1">
             <img
-              src="src/assets/Home2.jpg"
+              src="@/assets/Home2.jpg"
               alt="Home2 slika"
               class="img-fluid rounded-image"
             />
@@ -118,7 +118,7 @@ export default {
 <style scoped>
 .home {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("src/assets/homebackground.jpg");
+    url("@/assets/homebackground.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

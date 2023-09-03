@@ -43,12 +43,12 @@
           <div class="col-md-6">
             <div class="contact-images text-right">
               <img
-                src="/src/assets/contact3.jpg"
+                src="/@/assets/contact3.jpg"
                 alt="Contact Image 1"
                 class="contact-image img-fluid"
               />
               <img
-                src="/src/assets/contact4.jpg"
+                src="/@/assets/contact4.jpg"
                 alt="Contact Image 2"
                 class="contact-image img-fluid mt-4"
               />
@@ -235,6 +235,6 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/user-image.jpg);
+  background-image: url(@/assets/user-image.jpg);
 }
 </style>

@@ -39,12 +39,12 @@
           <div class="col-md-6">
             <div class="about-images text-right">
               <img
-                src="/src/assets/about.jpg"
+                src="/@/assets/about.jpg"
                 alt="About Image 1"
                 class="about-image img-fluid"
               />
               <img
-                src="/src/assets/about2.jpg"
+                src="/@/assets/about2.jpg"
                 alt="About Image 2"
                 class="about-image img-fluid mt-4"
               />
@@ -171,6 +171,6 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/user-image.jpg);
+  background-image: url(@/assets/user-image.jpg);
 }
 </style>

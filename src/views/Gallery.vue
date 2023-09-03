@@ -17,28 +17,28 @@
       <!-- Prvi red slika -->
       <div class="gallery-image">
         <p class="image-text">1. Breakfast Area</p>
-        <img src="src/assets/gallery1.jpg" alt="Image 1" class="image" />
+        <img src="@/assets/gallery1.jpg" alt="Image 1" class="image" />
       </div>
       <div class="gallery-image">
         <p class="image-text">2. Spa Retreat</p>
-        <img src="src/assets/gallery2.jpg" alt="Image 2" class="image" />
+        <img src="@/assets/gallery2.jpg" alt="Image 2" class="image" />
       </div>
       <div class="gallery-image">
         <p class="image-text">3. Reception Desk</p>
-        <img src="src/assets/gallery3.jpg" alt="Image 3" class="image" />
+        <img src="@/assets/gallery3.jpg" alt="Image 3" class="image" />
       </div>
       <!-- Drugi red slika -->
       <div class="gallery-image">
         <p class="image-text">4. Fitness Center</p>
-        <img src="src/assets/gallery4.jpg" alt="Image 4" class="image" />
+        <img src="@/assets/gallery4.jpg" alt="Image 4" class="image" />
       </div>
       <div class="gallery-image">
         <p class="image-text">5. VIP Room</p>
-        <img src="src/assets/gallery5.jpg" alt="Image 5" class="image" />
+        <img src="@/assets/gallery5.jpg" alt="Image 5" class="image" />
       </div>
       <div class="gallery-image">
         <p class="image-text">6. Swimming Pool</p>
-        <img src="src/assets/gallery6.jpg" alt="Image 6" class="image" />
+        <img src="@/assets/gallery6.jpg" alt="Image 6" class="image" />
       </div>
     </div>
 
@@ -177,7 +177,7 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/user-image.jpg);
+  background-image: url(@/assets/user-image.jpg);
 }
 
 .username {

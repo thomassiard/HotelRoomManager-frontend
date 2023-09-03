@@ -144,27 +144,27 @@ export default {
 }
 
 .review1-image {
-  background-image: url(src/assets/review1.jpg);
+  background-image: url(@/assets/review1.jpg);
 }
 
 .review2-image {
-  background-image: url(src/assets/review4.jpg);
+  background-image: url(@/assets/review4.jpg);
 }
 
 .review3-image {
-  background-image: url(src/assets/review3.png);
+  background-image: url(@/assets/review3.png);
 }
 
 .review4-image {
-  background-image: url(src/assets/review5.jpg);
+  background-image: url(@/assets/review5.jpg);
 }
 
 .review5-image {
-  background-image: url(src/assets/review2.jpg);
+  background-image: url(@/assets/review2.jpg);
 }
 
 .review6-image {
-  background-image: url(src/assets/review6.jpg);
+  background-image: url(@/assets/review6.jpg);
 }
 
 .navbar.bg-dark-transparent {
@@ -263,7 +263,7 @@ export default {
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url(src/assets/user-image.jpg);
+  background-image: url(@/assets/user-image.jpg);
 }
 
 .user {

@@ -18,7 +18,7 @@
       <div class="profile-image">
         <!-- Display the user's profile picture here -->
         <img
-          src="src/assets/user-image.jpg"
+          src="@/assets/user-image.jpg"
           alt="Profile Picture"
           class="image"
         />
