@@ -58,7 +58,7 @@
           </div>
           <div class="col-md-6 mb-4 order-md-1">
             <img
-              src="@/assets/Home2.jpg"
+              src="@/assets/home2.jpg"
               alt="Home2 slika"
               class="img-fluid rounded-image"
             />
