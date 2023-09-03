@@ -43,12 +43,12 @@
           <div class="col-md-6">
             <div class="contact-images text-right">
               <img
-                src="/@/assets/contact3.jpg"
+                src="@/assets/contact3.jpg"
                 alt="Contact Image 1"
                 class="contact-image img-fluid"
               />
               <img
-                src="/@/assets/contact4.jpg"
+                src="@/assets/contact4.jpg"
                 alt="Contact Image 2"
                 class="contact-image img-fluid mt-4"
               />
