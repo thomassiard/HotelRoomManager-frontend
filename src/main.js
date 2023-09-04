@@ -11,7 +11,7 @@ import { registerPlugins } from "@/plugins";
 const app = createApp(App);
 
 // Baza URL-a za axios
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://hotel-room-manager-backend.vercel.app";
 
 app.config.globalProperties.$axios = axios;
 
