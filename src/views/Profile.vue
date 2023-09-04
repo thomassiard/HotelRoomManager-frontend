@@ -79,13 +79,12 @@ export default {
     };
   },
   mounted() {
-    // Pozovite funkciju za dohvaćanje profila
+    // Poziva funkciju za dohvaćanje profila
     this.fetchUserProfile();
   },
   methods: {
     async fetchUserProfile() {
       try {
-        // Promijenite URL rute kako biste poslali email umjesto ID-ja
         const token = localStorage.getItem("token");
 
         if (!token) {
@@ -99,7 +98,6 @@ export default {
         });
 
         const userData = response.data;
-        // Postavite dobivene podatke u varijable
         this.user.fullName = userData.fullName;
         this.user.email = userData.email;
         this.user.phoneNumber = userData.phoneNumber;

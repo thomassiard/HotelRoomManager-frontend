@@ -138,8 +138,8 @@ export default {
 
 .red-strip.top {
   position: fixed;
-  top: 68px; /* Visina navigacijskog bara */
-  height: 123px; /* Visina crvene trake */
+  top: 68px;
+  height: 123px;
   background-color: rgb(183, 71, 71);
   width: 100%;
 }

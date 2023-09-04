@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     async submitForm() {
-      // Provjerite je li email i password unesen
+      // Provjera je li email i password unesen
       if (!this.email || !this.password) {
         console.error("Please fill in both email and password.");
         return;
@@ -96,7 +96,7 @@ export default {
         if (response.data.token) {
           const token = response.data.token;
           localStorage.setItem("token", token);
-          // Provjerite je li korisnik admin
+          // Provjera je li korisnik admin
           if (
             this.email === "admin@gmail.com" &&
             this.password === "glavniadmin"

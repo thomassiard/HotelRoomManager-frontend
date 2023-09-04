@@ -1,5 +1,5 @@
 <template>
-  <div class="contact">
+  <div class="roomsreservation">
     <!-- Crvena traka ispod navigation bara -->
     <div class="red-strip top"></div>
 
@@ -7,12 +7,12 @@
       <i class="fa fa-arrow-left"></i> Return
     </router-link>
 
-    <!-- Sadržaj Contact Us stranice -->
-    <div class="contact-content">
+    <!-- Sadržaj roomsreservation stranice -->
+    <div class="roomsreservation-content">
       <div class="container">
         <div class="row justify-content-center mt-5">
           <div class="col-md-6">
-            <div class="contact-form">
+            <div class="roomsreservation-form">
               <h1 class="display-4 text-center">ROOM RESERVATION</h1>
               <form @submit.prevent="sendReservation">
                 <div class="form-group">
@@ -84,7 +84,6 @@
                       <option value="Quad Room">Quad Room</option>
                       <option value="VIP Room">VIP Room</option>
                     </select>
-                    <!-- Dodajte ikonicu za strelicu ovde -->
                     <i class="fa fa-chevron-down input-icon"></i>
                   </div>
                 </div>
@@ -101,7 +100,6 @@
                       <option value="Credit Card">Credit Card</option>
                       <option value="Cash">Cash</option>
                     </select>
-                    <!-- Dodajte ikonicu za strelicu ovde -->
                     <i class="fa fa-chevron-down input-icon"></i>
                   </div>
                 </div>
@@ -144,8 +142,6 @@ export default {
   methods: {
     async sendReservation() {
       try {
-        // Ovde možete poslati rezervaciju na server, ako je potrebno
-        // A zatim preusmeriti na odgovarajuću rutu
         const _data = {
           email: this.email,
           check_in: this.checkInDate,
@@ -170,15 +166,15 @@ export default {
 <style scoped>
 .back-to-rooms-button {
   position: fixed;
-  top: 12.5%; /* Promenite visinu prema vašim potrebama */
-  left: 32.5%; /* Podešavanje levo od vrha ekrana */
+  top: 12.5%;
+  left: 32.5%;
   background-color: rgb(238, 238, 178);
   color: black;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 5px;
-  text-decoration: none; /* Dodajte da se ukloni podvučeno tekst dugmeta */
-  z-index: 1; /* Postavite z-index da biste stavili dugme iznad crvene trake */
+  text-decoration: none;
+  z-index: 1;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
@@ -186,21 +182,21 @@ export default {
   background-color: rgb(238, 238, 178);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
-.contact-form {
+.roomsreservation-form {
   background-color: #f8f9fa;
   padding: 100px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.contact-form h1 {
+.roomsreservation-form h1 {
   margin-top: -80px;
 }
-.contact-paragraph {
+.roomsreservation-paragraph {
   font-size: 1.15rem;
 }
 
-.contact-images {
+.roomsreservation-images {
   margin-top: 65px;
 }
 
@@ -209,7 +205,7 @@ export default {
   font-weight: bold;
 }
 
-.contact-content {
+.roomsreservation-content {
   margin-top: 10rem;
 }
 
@@ -245,12 +241,12 @@ export default {
 
 .input-icon {
   position: absolute;
-  right: 10px; /* Prilagodite ovo kako biste postavili ikonu na željeni položaj */
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
   z-index: 2;
-  color: #333; /* Promenite boju ikonice prema vašim potrebama */
+  color: #333;
 }
 
 .reserve-button {
@@ -271,17 +267,17 @@ export default {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.contact-images {
+.roomsreservation-images {
   margin-top: 65px;
 }
 
-.contact-image {
+.roomsreservation-image {
   max-height: 300px;
   object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.contact-image {
+.roomsreservation-image {
   width: 100%;
   max-height: 300px;
   object-fit: cover;

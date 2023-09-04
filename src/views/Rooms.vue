@@ -312,7 +312,7 @@ export default {
 
 .rate-period {
   font-size: 14px;
-  color: #555; /* Boja teksta za period */
+  color: #555;
   margin-top: 5px;
 }
 
@@ -392,7 +392,7 @@ export default {
 .house-image img {
   max-width: 100%;
   border-radius: 10px;
-  max-height: 400px; /* Prilagodite visinu slike prema potrebama */
+  max-height: 400px;
 }
 
 .image {

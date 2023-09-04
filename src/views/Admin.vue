@@ -211,7 +211,7 @@ export default {
       }
     },
     async checkIn() {
-      // Ovdje trebate implementirati logiku za dohvaćanje podataka na temelju Check-in Number-a
+      //Logika za dohvaćanje podataka na temelju Check-in Number-a
       this.reservation = null;
       let reservation = null;
       try {
@@ -368,6 +368,6 @@ export default {
 
 .room-number-input {
   max-width: 300px;
-  margin: 0 auto; /* Centriraj ulazno polje */
+  margin: 0 auto;
 }
 </style>

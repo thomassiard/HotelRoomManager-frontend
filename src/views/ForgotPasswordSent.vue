@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-sent">
+  <div class="forgotpass-sent">
     <div class="background"></div>
     <div class="content">
       <div class="box">
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-.contact-sent {
+.forgotpass-sent {
   display: flex;
   justify-content: center;
   align-items: center;

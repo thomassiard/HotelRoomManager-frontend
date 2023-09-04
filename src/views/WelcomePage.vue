@@ -206,7 +206,6 @@
                   />
                   <div class="package-rating">
                     <i class="fa fa-star"></i>
-                    <!-- Yellow star icon here -->
                     <p class="package-rating-text">4.5</p>
                   </div>
                   <p class="package-name">Single Room</p>
@@ -225,7 +224,6 @@
                   />
                   <div class="package-rating">
                     <i class="fa fa-star"></i>
-                    <!-- Yellow star icon here -->
                     <p class="package-rating-text">4.6</p>
                   </div>
                   <p class="package-name">Double Room</p>
@@ -244,7 +242,6 @@
                   />
                   <div class="package-rating">
                     <i class="fa fa-star"></i>
-                    <!-- Yellow star icon here -->
                     <p class="package-rating-text">4.8</p>
                   </div>
                   <p class="package-name">Quad Room</p>
@@ -263,7 +260,6 @@
                   />
                   <div class="package-rating">
                     <i class="fa fa-star"></i>
-                    <!-- Yellow star icon here -->
                     <p class="package-rating-text">5.0</p>
                   </div>
                   <p class="package-name">VIP Room</p>
@@ -357,7 +353,7 @@ export default {
       showScrollButton: true,
       checkInDate: null,
       checkOutDate: null,
-      roomType: "single", // Podesite na početni tip sobe
+      roomType: "single",
       availabilityMessage: "",
     };
   },
@@ -691,15 +687,15 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 20px 0;
   text-align: center;
-  display: flex; /* Dodajte ovo svojstvo */
-  flex-direction: column; /* Dodajte ovo svojstvo */
-  align-items: center; /* Dodajte ovo svojstvo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .package-image {
-  width: 100%; /* Set a fixed width for the images */
-  height: 150px; /* Set a fixed height for the images */
-  object-fit: cover; /* Maintain aspect ratio while covering the container */
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }
@@ -711,19 +707,19 @@ export default {
 }
 
 .package-rating i {
-  color: #ffc107; /* Boja ocjene */
+  color: #ffc107;
   margin-right: 5px;
 }
 
 .package-rating-text {
-  margin: 0; /* Remove margin from <p> element */
+  margin: 0;
 }
 
 .package-name {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 5px; /* Smanjite ovu marginu */
-  padding-top: 10px; /* Dodajte ovu marginu */
+  margin-bottom: 5px;
+  padding-top: 10px;
   color: black;
 }
 

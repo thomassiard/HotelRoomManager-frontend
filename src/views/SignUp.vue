@@ -179,11 +179,11 @@ export default {
 .form-container {
   width: 100%;
   max-width: 400px;
-  margin: 0 auto; /* Dodali smo margin: 0 auto; za horizontalno centriranje */
+  margin: 0 auto;
   padding: 20px;
-  background-color: white; /* Dodali smo pozadinu kako bi se istaknula forma */
-  border-radius: 10px; /* Zaobljeni rubovi forme */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lagana sjena ispod forme */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hotel-room-manager {

@@ -64,8 +64,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import emailjs from "emailjs-com"; // Uvoz EmailJS biblioteke
+import emailjs from "emailjs-com";
 import Navigation from "@/components/navigation.vue";
 
 export default {
@@ -81,19 +80,19 @@ export default {
   methods: {
     async sendEmail() {
       try {
-        // Konfigurirajte EmailJS s vašim podacima
-        emailjs.init("S0AiR8Z6MtQGCulbj"); // Zamijenite "your_user_id" sa svojim korisničkim ID-om
+        // Konfiguracija EmailJS
+        emailjs.init("S0AiR8Z6MtQGCulbj");
 
         const templateParams = {
-          from_name: "Guest", // Ovdje postavite ime korisnika ili "Guest" prema vašem zahtjevu
-          to_name: "HotelRoomManagerService", // Ovdje postavite vaše ime ili ime primaoca prema vašem zahtjevu
-          email_id: this.email, // Ovo je e-mail adresa korisnika koju ste unijeli u formi
-          message: this.message, // Ovo je poruka koju je korisnik unio u formi
+          from_name: "Guest",
+          to_name: "HotelRoomManagerService",
+          email_id: this.email,
+          message: this.message,
         };
 
         await emailjs.send(
-          "service_oecg7ar", // Zamijenite "your_service_id" sa svojim servisnim ID-om
-          "template_6qvvocs", // Zamijenite s vašim template ID-om
+          "service_oecg7ar",
+          "template_6qvvocs",
           templateParams,
           "S0AiR8Z6MtQGCulbj"
         );

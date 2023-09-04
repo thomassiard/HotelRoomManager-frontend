@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-sent">
+  <div class="roomsreservation-sent">
     <div class="background"></div>
     <div class="content">
       <div class="box">
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "ContactSent",
+  name: "RoomsReservationSent",
   methods: {
     returnToHome() {
       this.$router.push({ name: "WelcomePage" });
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-.contact-sent {
+.roomsreservation-sent {
   display: flex;
   justify-content: center;
   align-items: center;
